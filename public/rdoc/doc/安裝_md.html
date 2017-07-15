@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>安裝 - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-E5-AE-89-E8-A3-9D">安裝</a>
+    <li><a href="#label-E9-81-B8-E6-93-87-E7-B7-9A-E4-B8-8A-E8-B3-87-E6-96-99-E5-BA-AB-EF-BC-9A">選擇線上資料庫：</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../README_md.html">README</a>
+  
+    <li><a href="../doc/HTTP_API_md.html">HTTP_API</a>
+  
+    <li><a href="../doc/WebSocket_API_md.html">WebSocket_API</a>
+  
+    <li><a href="../doc/佈署_md.html">佈署</a>
+  
+    <li><a href="../doc/安裝_md.html">安裝</a>
+  
+    <li><a href="../doc/查看伺服器_md.html">查看伺服器</a>
+  
+    <li><a href="../doc/連線至伺服器_md.html">連線至伺服器</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page doc/安裝.md">
+
+<h1 id="label-E5-AE-89-E8-A3-9D">安裝<span><a href="#label-E5-AE-89-E8-A3-9D">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>開發環境可選擇資料庫要使用線上資料庫，或使用本機資料庫。</p>
+
+<h2 id="label-E9-81-B8-E6-93-87-E7-B7-9A-E4-B8-8A-E8-B3-87-E6-96-99-E5-BA-AB-EF-BC-9A">選擇線上資料庫：<span><a href="#label-E9-81-B8-E6-93-87-E7-B7-9A-E4-B8-8A-E8-B3-87-E6-96-99-E5-BA-AB-EF-BC-9A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>一：安裝：</p>
+<ul><li>
+<p>Ruby版本：2.3.1</p>
+</li><li>
+<p>Rails版本：5.0.0</p>
+</li></ul>
+
+<p>二：安裝本機MySQL及Redis：</p>
+
+<pre class="ruby"><span class="ruby-identifier">brew</span> <span class="ruby-identifier">update</span>
+<span class="ruby-identifier">brew</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">redis</span>
+<span class="ruby-identifier">brew</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">mysql</span>
+</pre>
+
+<p>三：clone專案：</p>
+
+<pre class="ruby"><span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">git</span><span class="ruby-ivar">@gitlab</span>.<span class="ruby-identifier">jibako</span>.<span class="ruby-identifier">com</span>:<span class="ruby-identifier">bkd_tool</span><span class="ruby-operator">/</span><span class="ruby-identifier">afu_backend</span>.<span class="ruby-identifier">git</span>
+</pre>
+
+<p>四：安裝套件：</p>
+
+<pre class="ruby"><span class="ruby-identifier">bundle</span>
+</pre>
+
+<p>五：新增 <code>backend/config/database.yml</code> 並貼上以下內容：</p>
+
+<pre>default: &amp;default
+  adapter: mysql2
+  username: root
+  password: 12345678
+  pool: 5
+  timeout: 5000
+  port: 3306
+  encoding: utf8
+  host: afu-dev.cd75gda2paem.ap-northeast-1.rds.amazonaws.com
+  odds_service:
+    database: odds_service_dev
+
+development:
+  &lt;&lt;: *default
+  # 請確認現在開到afu多少，例如已經有1和2，就開afu3
+  database: afu6_development
+  # 透過forwarding連接AWS線上redis
+  redis:
+    host: localhost
+    port: 6377
+
+test:
+  &lt;&lt;: *default
+  # 同development命名規則
+  database: afu6_test
+  host: localhost
+  # 連接本機redis
+  redis:
+    host: localhost
+    port: 6379
+
+production:
+  &lt;&lt;: *default
+  # 同development命名規則
+  database: afu4_production</pre>
+
+<p>六：連結AWS redis</p>
+
+<p>由於AWS上的redis只能靠forwarding ssh的方式，透過EC2的主機連接，因此執行：</p>
+
+<pre>ssh -f -N -L6377:afu-dev.ze67a8.0001.apne1.cache.amazonaws.com:6379 ubuntu@52.192.25.216</pre>
+
+<p>請將以下內容加到<code>.bashrc</code>或<code>.zshrc</code>：</p>
+
+<pre>export AFU_REDIS=&quot;afu.ze67a8.0001.apne1.cache.amazonaws.com:6379&quot;
+export RESQUE_REDIS=&quot;afu2.ze67a8.0001.apne1.cache.amazonaws.com:6379&quot;
+export AFU_SERVER=&quot;ubuntu@52.192.25.216&quot;
+function redis-afu {
+  ps ax | grep $AFU_REDIS | grep -v grep | awk &#39;{print &quot;kill -9 &quot; $1}&#39; | sh
+  ssh -f -N -L6375:$AFU_REDIS $AFU_SERVER
+  ps ax | grep $RESQUE_REDIS | grep -v grep | awk &#39;{print &quot;kill -9 &quot; $1}&#39; | sh
+  ssh -f -N -L6374:$RESQUE_REDIS $AFU_SERVER
+}
+
+function redis-local {
+  ps ax | grep redis-server | grep -v grep | awk &#39;{print &quot;kill -9 $1&quot;}&#39; | sh
+  redis-server &amp;
+}
+
+function start {
+  echo &quot;Forwarding connection to redis from afu server&quot;
+  redis-afu &amp;&gt; /tmp/server.log
+  echo &quot;Initiating local redis server&quot;
+  redis-local &amp;&gt; /tmp/server.log
+  echo &quot;&quot;
+  echo &quot;=========================&quot;
+  ps ax | grep $AFU_REDIS | grep -v grep | awk &#39;{print &quot;redis(afu-dev) now running on port &quot; $1}&#39;
+  ps ax | grep $RESQUE_REDIS | grep -v grep | awk &#39;{print &quot;redis(afu2) now running on port &quot; $1}&#39;
+  ps ax | grep redis-server | grep -v grep | awk &#39;{print &quot;redis(local) now running on port &quot; $1}&#39;
+  echo &quot;=========================&quot;
+  echo &quot;&quot;
+  echo &quot;Done!&quot;
+  echo &quot;&quot;
+}</pre>
+
+<p>這樣在執行<code>start</code>指令時，就會啟動本機redis執行專案測試環境，以及連接到afu
+server的redis，用以執行開發環境。</p>
+
+<p>請先將public key加到正式機上，在可ssh的情況下才能redirect。</p>
+
+<p>七：安裝套件及建立資料庫</p>
+
+<pre class="ruby"><span class="ruby-identifier">rake</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">create</span>
+<span class="ruby-identifier">rake</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">migrate</span>
+</pre>
+
+<p>確定資料庫建立時沒有名字衝突再下一步，有衝突代表有人用了。</p>
+
+<p>八：測試</p>
+
+<p>執行：</p>
+
+<pre class="ruby"><span class="ruby-identifier">rake</span> <span class="ruby-identifier">test</span>
+</pre>
+
+<p>測試全過即建立OK。</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

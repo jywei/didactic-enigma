@@ -1,0 +1,23 @@
+<table class="table table-bordered table-info">
+  <thead>
+    <th>ID</th>
+    <th>名稱</th>
+    <th>最後發生時間</th>
+    <th>使用者</th>
+    <th>路徑</th>
+    <th>數量</th>
+  </thead>
+  <tbody>
+    <% logs.each do |log| %>
+      <tr class="<%= "archive" if log.archive %>">
+        <td><%= link_to log.id, "/logs/errors/#{log.id}" %></td>
+        <td><%= log.name %></td>
+        <td><%= log.created_at.in_time_zone('Asia/Taipei').strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td><%= log.try(:user).try(:username) %></td>
+        <td><%= log.path.split("?")[0] %></td>
+        <td><%= log.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

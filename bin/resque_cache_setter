@@ -1,0 +1,19 @@
+#!/bin/sh
+
+QUEUE="cache_setter"
+
+APP_ENV="production"
+INTERVAL="0.001"
+PIDFILE="/var/www/afu-backend/tmp/resque_$QUEUE.pid"
+APP_ROOT="/var/www/afu-backend/current"
+BUNDLE_BIN="/home/ubuntu/.rbenv/shims/bundle"
+
+CMD="cd $APP_ROOT && $BUNDLE_BIN exec rake resque:work RAILS_ENV=$APP_ENV QUEUE='$QUEUE' INTERVAL=$INTERVAL PIDFILE=$PIDFILE VERBOSE=1 BACKGROUND=yes"
+
+echo 'Killing old process...'
+kill -9 `cat $PIDFILE`
+
+echo "Starting new process for $QUEUE"
+su - ubuntu -c "$CMD"
+
+echo 'Done.'

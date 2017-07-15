@@ -1,0 +1,10 @@
+development:
+  adapter: redis
+  url: redis://localhost:6379
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: redis://afu2.ze67a8.0001.apne1.cache.amazonaws.com:6379

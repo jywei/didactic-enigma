@@ -1,0 +1,50 @@
+<%= render 'header' %>
+
+<script type="text/javascript" charset="utf-8">
+  var order       = true;
+</script>
+
+<div class="container" style="margin-top: 20px;">
+  <p>下單總數：<%= Order.all.count %>，僅顯示最新100筆 | <%= link_to "刪除全部訂單", "/history", method: :delete, style: 'color: red' %></p>
+
+  <% if @orders.empty? %>
+    <tr>
+      <td colspan="4">No訂單，肛溫</td>
+    </tr>
+  <% else %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>is_parlay</td>
+          <td>offer_type</td>
+          <td>sport</td>
+          <td>order_time</td>
+          <td>account</td>
+          <td>ip</td>
+          <td>price</td>
+          <td>items</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order[:id] %></td>
+            <td><%= order[:type_flag] %></td>
+            <td><%= order[:offer_type] %></td>
+            <td><%= order[:sport] %></td>
+            <td><%= order[:order_time] %></td>
+            <td><%= order[:account][:username] %></td>
+            <td><%= order[:ip] %></td>
+            <td><%= order[:price] %></td>
+            <td width="450px">
+              <% order[:items].each do |item| %>
+                <p><%= "場次 #{item[:id] || '已被刪除'}，下注隊伍 #{item[:team]}，賠率 #{item[:odd]}，金額 #{item[:amount]}" %></p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -1,0 +1,47 @@
+<h3>Log</h3>
+
+<div class="col-lg-12">
+  <%= render "pushes/logs/search" %>
+</div>
+
+<% if params[:offer] %>
+  <h4>僅顯示與 <%= params[:offer] %> 玩法相關的訊息</h4>
+<% end %>
+
+<table class="table table-bordered">
+  <tr>
+    <td>事件</td>
+    <td>動作</td>
+    <td>日期</td>
+    <td>時間</td>
+    <td>提供商</td>
+    <td>玩法</td>
+    <td>類別</td>
+    <td>球頭</td>
+    <td>主</td>
+    <td>客</td>
+    <td>平</td>
+    <td>錯誤</td>
+    <td>走地</td>
+    <td>停盤</td>
+  </tr>
+  <% @logs.each do |log| %>
+    <tr class="<%= log.action.include?("drop") ? "light-gray" : "" %>">
+      <td><%= link_to log.event, "/pushes/matches/#{params[:id]}/logs/#{log.id}" %></td>
+      <td><%= log.action %></td>
+      <td><%= log.created_at.in_time_zone("Asia/Taipei").strftime("%m/%d") %></td>
+      <td><%= log.created_at.in_time_zone("Asia/Taipei").strftime("%H:%M:%S") %></td>
+      <td><%= log.book_maker.try(:name) %></td>
+      <td><%= log.ot %>. <%= log.ot_name %></td>
+      <td><%= log.ot_type %></td>
+      <td><%= log.head %></td>
+      <td><%= oppo_round(log.h_oppo, 3) %></td>
+      <td><%= oppo_round(log.a_oppo, 3) %></td>
+      <td><%= oppo_round(log.d_oppo, 3) %></td>
+      <td><%= log.has_error ? '是' : '' %></td>
+      <td><%= JSON.parse(log.data)["is_running"] == 1 ? '是' : "" %></td>
+      <td><%= JSON.parse(log.data)["offer_flags"] == 0 ? '是' : "" %></td>
+    </tr>
+  <% end %>
+</table>
+

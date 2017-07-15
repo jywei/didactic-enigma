@@ -1,0 +1,26 @@
+<%= render 'header' %>
+<%= render 'mocks/match' %>
+
+<div class="container">
+  <h3>廣播內容</h3>
+  <!-- <p class="separate&#45;form">「程式語言發明者如果長得不好看，這個程式語言就一定不會紅」&#45; Auli Chan</p> -->
+  
+  <%= column("頻道"                   , "channel"                , type: 'text'   , default: "Player::MatchesChannel") %>
+  <%= column("動作"                   , "channel_action"         , type: 'text'   , default: "odd_base") %>
+  <%= column("整場比賽ID"             , "_match_id"              , type: 'text'   , default: @match[:halves_match_id]) %>
+  <%= column("比賽場次ID"             , "_halves_match_id"       , type: 'text'   , default: @match[:match_id]) %>
+  <%= column("玩法"                   , "offer"                  , type: 'text'   , default: @offer[:type]) %>
+  <%= column("主隊賠率"               , "h_odd"                  , type: 'float'  , default: @offer[:h]) %>
+  <%= column("客隊賠率"               , "a_odd"                  , type: 'float'  , default: @offer[:a]) %>
+  <%= column("平手賠率"               , "d_odd"                  , type: 'float'  , default: @offer[:d]) %>
+  <%= column("串關主隊賠率"           , "parlay_h_odd"           , type: 'float'  , default: @parlay[:h]) %>
+  <%= column("串關客隊賠率"           , "parlay_a_odd"           , type: 'float'  , default: @parlay[:a]) %>
+  <%= column("串關平手賠率"           , "parlay_d_odd"           , type: 'float'  , default: @parlay[:d]) %>
+  <%= column("最後更新時間"           , "last_updated"           , type: 'number' , default: @offer[:last_updated][:h]) %>
+  <%= column("亞新盤：球頭"           , "handicapped-head"       , type: 'number' , default: @offer[:handicapped][:head].to_i) %>
+  <%= column("亞新盤：球頭比例"       , "handicapped-proportion" , type: 'number' , default: @offer[:handicapped][:proportion]) %>
+  <%= column("亞新盤：比例調整值" , "handicapped-modifier"   , type: 'number' , default: @offer[:last_updated][:modifier]) %>
+
+  <div class="btn btn-primary" style="margin: 20px 0 30px 0" id="broadcast">廣播</div>
+  <div id="ok" style="display: inline; padding-left: 20px; font-size: 24px; color: green; opacity: 0; font-weight: bold;">已廣播</div>
+</div>

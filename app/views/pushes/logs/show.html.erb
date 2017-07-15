@@ -1,0 +1,11 @@
+<%= render "mocks/header" %>
+
+<div class="container">
+  <div class="col-lg-12">
+    <% if @log.match %>
+      <h4>Match <%= link_to (params[:match_id] || @log.match.id), "/pushes/matches/#{params[:match_id] || @log.match.id}" %></h4>
+    <% end %>
+    <%= render "pushes/logs/log" %>
+  </div>
+</div>
+

@@ -1,0 +1,22 @@
+<%= render 'mocks/header' %>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>排程名稱</th>
+      <th>排程數量</th>
+      <th>最後執行時間</th>
+      <th>執行時間長度</th>
+    </thead>
+    <% @workers.each do |worker| %>
+      <tr>
+        <td><%= worker[:name] %></td>
+        <td><%= worker[:count] %></td>
+        <td><%= worker[:last_updated] %></td>
+        <td><%= worker[:processing_time] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to "刪除全部排程", "/workers/delete_all", method: :post, class: 'btn btn-danger pull-right' %>
+</div>

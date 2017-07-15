@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Pushes::MatchesController - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-filter">#filter</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-offers">#offers</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-tx">#tx</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Pushes::MatchesController">
+  <h1 id="class-Pushes::MatchesController" class="class">
+    class Pushes::MatchesController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-filter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">filter</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="filter-source">
+            <pre><span class="ruby-comment"># File app/controllers/pushes/matches_controller.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">filter</span>
+  <span class="ruby-comment"># params[:league] = &quot;716&quot; if params[:league].blank?</span>
+  <span class="ruby-comment"># params[:league_id] = Category.find_by(name: params[:league]).id</span>
+  <span class="ruby-identifier">hash</span> = <span class="ruby-constant">Match</span><span class="ruby-operator">::</span><span class="ruby-constant">Open</span>.<span class="ruby-identifier">query_by</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@offers</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value">:offers</span>]
+  <span class="ruby-ivar">@matches</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value">:matches</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/pushes/matches_controller.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">ids</span> = <span class="ruby-constant">Log</span><span class="ruby-operator">::</span><span class="ruby-constant">Push</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">200</span>).<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:tx_match_id</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-ivar">@matches</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">category</span><span class="ruby-operator">:</span> <span class="ruby-value">:sport</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">leader_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ids</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">200</span>)
+
+  <span class="ruby-ivar">@error_logs</span> = <span class="ruby-constant">Log</span><span class="ruby-operator">::</span><span class="ruby-constant">Push</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;has_error = ? OR action = ?&#39;</span>, <span class="ruby-keyword">true</span>, <span class="ruby-string">&#39;no_action&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">200</span>)
+  <span class="ruby-ivar">@logs</span> = <span class="ruby-constant">Log</span><span class="ruby-operator">::</span><span class="ruby-constant">Push</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;id DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">5</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-offers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">offers</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="offers-source">
+            <pre><span class="ruby-comment"># File app/controllers/pushes/matches_controller.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">offers</span>
+  <span class="ruby-ivar">@match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:offers</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@offers</span> = <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offers</span>.<span class="ruby-identifier">name_and_flat</span>
+  <span class="ruby-ivar">@afu_match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match</span>(<span class="ruby-ivar">@match</span>.<span class="ruby-identifier">key</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@afu_match</span>
+    <span class="ruby-ivar">@current_offer_ids</span> = <span class="ruby-ivar">@afu_match</span>[<span class="ruby-value">:play</span>].<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>[<span class="ruby-value">:offer_id</span>].<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/pushes/matches_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Match</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;找不到場次&quot;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@match</span>     = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:offers</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@matches</span>   = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:offers</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">leader_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">leader_id</span>)
+  <span class="ruby-ivar">@search_id</span> = <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">id</span>
+
+  <span class="ruby-ivar">@logs</span>      = <span class="ruby-constant">Log</span><span class="ruby-operator">::</span><span class="ruby-constant">Push</span>.<span class="ruby-identifier">by_match</span>(<span class="ruby-ivar">@match</span>.<span class="ruby-identifier">leader_id</span>).<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at DESC&quot;</span>)
+  <span class="ruby-ivar">@search_params</span> = <span class="ruby-identifier">params</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offer</span>]
+    <span class="ruby-ivar">@logs</span> = <span class="ruby-ivar">@logs</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offer</span>])
+    <span class="ruby-ivar">@offers</span> = <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:offer</span>])
+    <span class="ruby-ivar">@flat</span> = <span class="ruby-ivar">@offers</span>.<span class="ruby-identifier">flat</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:offer</span>])
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tx" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tx</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tx-source">
+            <pre><span class="ruby-comment"># File app/controllers/pushes/matches_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tx</span>
+  <span class="ruby-ivar">@search_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+  <span class="ruby-ivar">@logs</span>      = <span class="ruby-constant">Log</span><span class="ruby-operator">::</span><span class="ruby-constant">Push</span>.<span class="ruby-identifier">by_match</span>(<span class="ruby-ivar">@search_id</span>).<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@search_params</span> = <span class="ruby-identifier">params</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

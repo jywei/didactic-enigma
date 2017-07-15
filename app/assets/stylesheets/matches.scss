@@ -1,0 +1,21 @@
+.bg-blue {
+  background-color: #d9ebff;
+}
+
+table {
+  tbody {
+    tr.border-top {
+      td {
+        border-top: 2px solid black;
+      }
+    }
+  }
+}
+
+tr.blanchedalmond td {
+  background-color: blanchedalmond;
+}
+
+.red {
+  color: red;
+}

@@ -1,0 +1,35 @@
+default: &default
+  adapter: mysql2
+  username: root
+  password: 12345678
+  pool: 5
+  timeout: 5000
+  port: 3306
+  encoding: utf8
+  host: localhost
+  odds_service:
+    database: odds_service_dev
+
+development:
+  <<: *default
+  database: afu_development
+  redis:
+    server:
+      host: localhost
+      port: 6377
+    resque:
+      host: localhost
+      port: 6376
+
+test:
+  <<: *default
+  database: afu_test
+  host: localhost
+  redis:
+    host: localhost
+    port: 6379
+
+production:
+  <<: *default
+  database: afu1
+

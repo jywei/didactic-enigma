@@ -1,0 +1,28 @@
+ci: &ci
+  adapter: mysql2
+  username: root
+  password: fancyboy888
+  pool: 5
+  timeout: 5000
+  port: 3306
+  encoding: utf8
+  host: afu-dev.cd75gda2paem.ap-northeast-1.rds.amazonaws.com
+  redis:
+    server:
+      host: localhost
+      port: 6379
+    resque:
+      host: localhost
+      port: 6379
+
+development:
+  <<: *ci
+  database: afu_ci_development
+
+test:
+  <<: *ci
+  database: afu_ci_test
+
+production:
+  <<: *ci
+  database: afu_ci_production

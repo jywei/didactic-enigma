@@ -1,0 +1,27 @@
+<table class="table table-bordered">
+  <thead>
+    <th>玩法</th>
+    <th>玩法ID</th>
+    <th>狀態</th>
+    <th>亞新盤</th>
+    <th>球頭</th>
+    <th>主</th>
+    <th>客</th>
+    <th>平</th>
+  </thead>
+  <tbody>
+    <% cache_offers.each do |k, v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v[:offer_id] %></td>
+        <td><%= v[:stat] == 'unavailable' ? "未開" : v[:stat] %></td>
+        <td><%= v["asian_new"] ? "是" : "-" %></td>
+        <td><%= display_head(v) %></td>
+        <td><%= v[:h] %></td>
+        <td><%= v[:a] %></td>
+        <td><%= v[:d] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -1,0 +1,62 @@
+##################### Lint ##################################
+
+# Allow safe assignment in conditions.
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
+# checks whether the end keywords are aligned properly for `do` `end` blocks.
+Lint/BlockAlignment:
+  # The value `start_of_block` means that the `end` should be aligned with line
+  # where the `do` keyword appears.
+  # The value `start_of_line` means it should be aligned with the whole
+  # expression's starting line.
+  # The value `either` means both are allowed.
+  AlignWith: either
+  SupportedStyles:
+    - either
+    - start_of_block
+    - start_of_line
+
+# Align ends correctly.
+Lint/EndAlignment:
+  # The value `keyword` means that `end` should be aligned with the matching
+  # keyword (if, while, etc.).
+  # The value `variable` means that in assignments, `end` should be aligned
+  # with the start of the variable on the left hand side of `=`. In all other
+  # situations, `end` should still be aligned with the keyword.
+  # The value `start_of_line` means that `end` should be aligned with the start
+  # of the line which the matching keyword appears on.
+  AlignWith: keyword
+  SupportedStyles:
+    - keyword
+    - variable
+    - start_of_line
+  AutoCorrect: false
+
+Lint/DefEndAlignment:
+  # The value `def` means that `end` should be aligned with the def keyword.
+  # The value `start_of_line` means that `end` should be aligned with method
+  # calls like `private`, `public`, etc, if present in front of the `def`
+  # keyword on the same line.
+  AlignWith: start_of_line
+  SupportedStyles:
+    - start_of_line
+    - def
+  AutoCorrect: false
+
+Lint/InheritException:
+  # The default base class in favour of `Exception`.
+  EnforcedStyle: runtime_error
+  SupportedStyles:
+    - runtime_error
+    - standard_error
+
+# Checks for unused block arguments
+Lint/UnusedBlockArgument:
+  IgnoreEmptyBlocks: true
+  AllowUnusedKeywordArguments: false
+
+# Checks for unused method arguments.
+Lint/UnusedMethodArgument:
+  AllowUnusedKeywordArguments: false
+  IgnoreEmptyMethods: true

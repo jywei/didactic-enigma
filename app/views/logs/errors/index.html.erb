@@ -1,0 +1,15 @@
+<%= render "mocks/header" %>
+
+<div class="container">
+  <h3>新的錯誤</h3>
+  <% if @recent.any? %>
+    <%= render "logs", logs: @recent %>
+    <%= link_to "將錯誤拋諸腦後", "/logs/errors/archive", method: :post, class: 'pull-right btn btn-warning', style: 'margin-bottom: 20px;' %>
+  <% else %>
+    <p>一切安好，可喜可賀</p>
+  <% end %>
+
+  <h3>過去的錯誤</h3>
+  <p>"傷害已經造成，錯誤無法彌補" - Roy Wei</p>
+  <%= render "logs", logs: @logs %>
+</div>

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark" style="background-color: #F5F5F5; border-bottom: 1px solid #D2D2D2">
+  <a class="navbar-brand" href="/">控台小白</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">比賽資料 <span class="caret"></span></a>
+      <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+        <%= link_to "控盤端", '/manager', class: 'btn' %>
+        <%= link_to "遊戲端", '/player',  class: 'btn' %>
+        <%= link_to "串關下注", '/player/parlays', class: 'btn' %>
+        <%= link_to "亞新盤", "/asians", class: 'btn' %>
+        <%= link_to "目前場次", "/pushes/matches/filter", class: 'btn' %>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">API測試 <span class="caret"></span></a>
+      <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+        <%= link_to "使用者近期訂單", "/api/v1/player/orders/recent", class: 'btn' %>
+        <%= link_to "賠率廣播", "/broadcast", class: "btn" %>
+      </div>
+    </li>
+    <li class="nav-item">
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log <span class="caret"></span></a>
+      <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+        <%= link_to "push",  "/pushes/matches", class: 'btn' %>
+        <%= link_to "程式錯誤",   "/logs/errors", class: 'btn' %>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">外部連結 <span class="caret"></span></a>
+      <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+        <%= link_to "對前端API文件", "/docs/api", class: 'btn', target: "_blank" %>
+        <%= link_to "專案API文件", "/rdoc/index.html", class: 'btn', target: "_blank" %>
+        <%= link_to "Worker小紅", "http://52.198.83.41:9292/tx_boards", class: 'btn', target: "_blank" %>
+        <%= link_to "前端遊戲端", "http://54.249.112.19", class: 'btn', target: '_blank' %>
+      </div>
+    </li>
+    <li class="nav-item">
+        <%= link_to "所有注單", "/history", class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "輸入賽果", "/results", class: 'nav-link' %>
+    </li>
+  </ul>
+  <div class="form-inline pull-right" style="margin-top:8px; margin-right: 10px;">
+    <% if current_user %>
+      <p style="margin-top: 6px; display: inline-block;"><span class="update" style="display: inline-block; color: #ab7525; cursor: pointer;">更新</span>，No.<%= current_user.id %>. <%= current_user.username %>，層級：<%= current_user.tier %>，<span class="sign-out" style="display: inline-block; color: #ab7525; cursor: pointer;">登出</span></p>
+      <%= form_tag('/api/v1/users/update_password', method: :post, style: "display: inline-block;") do %>
+        <input name="password" type="text" class="form-control update_password" style="width: 100px;" placeholder="修改密碼" />
+        <button class="sign-in btn btn-default" style="width: 80px;">修改密碼</button>
+      <% end %>
+    <% else %>
+      <input type="text" class="form-control username" style="width: 100px;" placeholder="帳號" />
+      <input type="text" class="form-control password" style="width: 100px;" placeholder="密碼" />
+      <button class="sign-in btn btn-default" style="width: 80px;">登入</button>
+    <% end %>
+  </form>
+</nav>
+
+<% if flash[:notice] %>
+  <div class="container">
+    <div class="alert alert-warning">
+      <%= flash[:notice] %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  var log = false;
+  var manager = false;
+  var player = false;
+  var position = false;
+
+  $(document).ready(function(){
+    $(".pending").click(function(){
+      $(this).text("執行中");
+      $(this).attr("disabled", "disabled");
+    });
+  });
+</script>

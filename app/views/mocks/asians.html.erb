@@ -1,0 +1,40 @@
+<%= render 'header' %>
+
+<div class="container" style="margin-top: 20px;">
+  <p>總數：<%= @asians.size %>，僅顯示最新100筆 | <%= link_to "全部重新計算", "/asians/recalculate", style: 'color: red' %></p>
+
+  <% if @asians.empty? %>
+    <tr>
+      <td colspan="4">No 亞新，肛溫</td>
+    </tr>
+  <% else %>
+    <table class="table table-bordered">
+      <tr>
+        <td>ID / 重算</td>
+        <td>玩法</td>
+        <td>Offer ID</td>
+        <td>H odd</td>
+        <td>A odd</td>
+        <td>讓隊</td>
+        <td>最平盤球頭（OU）</td>
+        <td>亞新標準</td>
+        <td>亞新原始</td>
+        <td>建立時間</td>
+      </tr>
+      <% @asians.each do |asia| %>
+        <tr>
+          <td><%= asia.id %> / <%= link_to "重算", "/asians/#{asia.id}", style: 'color: red' %></td>
+          <td><%= asia.name %></td>
+          <td><%= asia.offer_id %></td>
+          <td><%= asia.h_odd %></td>
+          <td><%= asia.a_odd %></td>
+          <td><%= asia.handicapped_team %></td>
+          <td><%= asia.flat_head %></td>
+          <td><%= asia.asia_format %></td>
+          <td><%= asia.orgin_asia_format %></td>
+          <td><%= asia.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

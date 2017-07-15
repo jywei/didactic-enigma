@@ -1,0 +1,61 @@
+<%= render 'header' %>
+<%= render "categories" %>
+<%= render "match" %>
+
+<script type="text/javascript" charset="utf-8">
+  var manager  = true;
+  var position = true;
+</script>
+
+<hr />
+
+<div class="container" style="margin-top: 10px;">
+  <% if not @offer.available? %>
+    <h4 style="color: red;">此玩法未開盤，控盤操作請選擇其他玩法</h4>
+    <hr />
+  <% end %>
+
+  <h4>調整賠率</h4>
+  <div class="btn btn-default modifier" data-type='h' data-modifier='0.01'>主隊賠率調高</div>
+  <div class="btn btn-default modifier" data-type='h' data-modifier='-0.01'>主隊賠率降低</div>
+  <div class="btn btn-default modifier" data-type='a' data-modifier='0.01'>客隊賠率調高</div>
+  <div class="btn btn-default modifier" data-type='a' data-modifier='-0.01'>客隊賠率降低</div>
+  <p></p>
+  <div class="btn btn-default modifier" data-type='asian' data-modifier='5'>亞新盤比例調高</div>
+  <div class="btn btn-default modifier" data-type='asian' data-modifier='-5'>亞新盤比例降低</div>
+</div>
+
+<hr />
+
+<div class="container" style="margin-top: 10px;">
+  <h4>調整狀態</h4>
+  <div class="btn btn-default status" data-offer="<%= @offer[:type] %>"  data-stat="paused">單一玩法停押</div>
+  <div class="btn btn-default status" data-offer="all" data-stat="paused">整場比賽停押</div>
+  <div class="btn btn-default status" data-offer="<%= @offer[:type] %>"  data-stat="disabled">單一玩法停盤</div>
+  <div class="btn btn-default status" data-offer="all" data-stat="disabled">整場比賽停盤</div>
+  <p></p>
+  <div class="btn btn-default status" data-offer="<%= @offer[:type] %>"  data-stat="normal">單一玩法恢復正常</div>
+  <div class="btn btn-default status" data-offer="all" data-stat="normal">整場比賽恢復正常</div>
+</div>
+
+<hr />
+
+<div class="container" style="margin-top: 10px;">
+  <div class="btn btn-default stake">賭金跳動</div>
+  <div class="btn btn-default random-head">球頭跳動</div>
+</div>
+
+<hr />
+
+<div class="container" style="margin-top: 10px;">
+  <div class="btn btn-default threshold">主隊臨界值跳動</div>
+</div>
+
+<hr />
+
+<div class="container" style="margin-top: 10px;">
+  <div class="btn btn-default match-live">比賽開打</div>
+  <div class="btn btn-default match-unlive">調整為比賽尚未開打</div>
+</div>
+
+<div style="margin-top: 20px; height: 20px;"></div>

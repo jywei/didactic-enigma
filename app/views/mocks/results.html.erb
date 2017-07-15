@@ -1,0 +1,63 @@
+<%= render 'header' %>
+
+<div class="container" style="margin-top: 20px;">
+  <h3>NBA or MLB賽果輸入</h3>
+  <p>NBA and MLB目前賽事總數：<%= @result_matches.length %></p>
+  <br>
+  <% if @result_matches.empty? %>
+    <tr>
+      <td colspan="4">No Match, No Life!</td>
+    </tr>
+  <% else %>
+    <table class="table table-bordered">
+      <tr>
+        <td>ID</td>
+        <td>League</td>
+        <td>比賽時間</td>
+        <td>主隊</td>
+        <td>客隊</td>
+        <td>主隊分數</td>
+        <td>客隊分數</td>
+        <td>Action</td>
+      </tr>
+      <% @result_matches.each do |match| %>
+        <tr>
+          <td class="leader_id"><%= match.leader_id %></td>
+          <td><%= match.category.name %></td>
+          <td><%= match.start_time.to_formatted_s(:short) %></td>
+          <td><%= match.hteam.name %></td>
+          <td><%= match.ateam.name %></td>
+          <td>
+            <div contenteditable="true" class="h_score"><%= match.h_score %></div>
+          </td>
+          <td>
+            <div contenteditable="true" class="a_score"><%= match.a_score %></div>
+          </td>
+          <td>
+            <div id="submit" class="btn btn-danger btn-sm result">更新比數並關盤</div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <br>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  var player   = false;
+  var manager  = true;
+  var position = false;
+  var log      = false;
+  $(document).ready(function(){
+    $("#submit").on('click', (e) => {
+      var finder = $(e.target).parent(),
+          h_score = finder.siblings().find(".h_score").text(),
+          a_score = finder.siblings().find(".a_score").text(),
+          leader_id = finder.siblings(".leader_id").text(),
+          target = "<%= results_submit_url %>?" + "leader_id=" + leader_id + "&h_score=" + h_score + "&a_score=" + a_score ;
+      $.getJSON(target ,() => {
+        alert("Scores are updated");
+      });
+    });
+  });
+</script>

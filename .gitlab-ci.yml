@@ -1,0 +1,67 @@
+
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+before_script:
+
+  # debugging info
+  - whoami
+  - pwd
+  - ls -al
+
+  # System dependencies
+  # - sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev
+
+  # Install Ruby 
+  # - curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+  - export RBENV_ROOT="${HOME}/.rbenv"
+  - export PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
+  - eval "$(rbenv init -)"
+  # - rbenv install 2.3.1
+  # - rbenv global 2.3.1
+
+  # debugging info
+  - ruby -v
+  - which ruby
+
+  # Install Dependencies
+  - gem install bundler --no-ri --no-rdoc
+
+  # project dependencies
+  - bundle install
+
+
+build_job:
+  stage: build
+  script:
+    # Setup DB
+    - mv config/database.ci.yml config/database.yml
+    - mv config/secrets.ci.yml config/secrets.yml
+    - bin/rails db:environment:set RAILS_ENV=development
+    - bundle exec rake db:drop db:create db:migrate
+
+test_job:
+  stage: test
+  script:
+    - mv config/database.ci.yml config/database.yml
+    - mv config/secrets.ci.yml config/secrets.yml
+    - bin/rails db:environment:set RAILS_ENV=development
+    - bundle exec rake db:drop db:create db:migrate
+    #test
+    - bundle exec rake test
+    - rubocop
+    - RAILS_ENV=production rake assets:precompile
+
+
+deploy_job:
+  stage: deploy
+  script:
+    - mina production deploy
+  when: on_success
+  only:
+    - master
+

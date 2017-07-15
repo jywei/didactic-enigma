@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Offer::Asian - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../ApplicationRecord.html">ApplicationRecord</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Helper.html">Offer::Helper</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-convert_format">::convert_format</a>
+    
+    <li ><a href="#method-c-transform_asia">::transform_asia</a>
+    
+    <li ><a href="#method-i-asian">#asian</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Offer::Asian">
+  <h1 id="class-Offer::Asian" class="class">
+    class Offer::Asian
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-convert_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_format</span><span
+            class="method-args">(offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="convert_format-source">
+            <pre><span class="ruby-comment"># File app/models/offer/asian.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_format</span>(<span class="ruby-identifier">offer</span>)
+  <span class="ruby-identifier">base</span> = <span class="ruby-identifier">offer</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:base</span>)
+  <span class="ruby-identifier">asia</span> = <span class="ruby-identifier">offer</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:asia</span>)
+  {
+    <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">name</span>,
+    <span class="ruby-identifier">offer_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">id</span>,
+    <span class="ruby-identifier">h_odd</span><span class="ruby-operator">:</span> <span class="ruby-value">0.95</span>,
+    <span class="ruby-identifier">a_odd</span><span class="ruby-operator">:</span> <span class="ruby-value">0.95</span>,
+    <span class="ruby-identifier">asian_proportion</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">standard_prob</span>,
+    <span class="ruby-identifier">asian_head</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">asia_head</span>,
+    <span class="ruby-identifier">handicapped_team</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">handicap_team</span>,
+    <span class="ruby-identifier">asia_format</span><span class="ruby-operator">:</span> <span class="ruby-identifier">asia</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:asia_format</span>, <span class="ruby-value">:standard</span>),
+    <span class="ruby-identifier">orgin_asia_format</span><span class="ruby-operator">:</span> <span class="ruby-identifier">asia</span>.<span class="ruby-identifier">dig</span>(<span class="ruby-value">:origin_format</span>),
+    <span class="ruby-identifier">water</span><span class="ruby-operator">:</span> <span class="ruby-value">0.01</span>,
+    <span class="ruby-identifier">flat_head</span><span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">flat_head</span>.<span class="ruby-identifier">to_s</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-transform_asia" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transform_asia</span><span
+            class="method-args">(offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="transform_asia-source">
+            <pre><span class="ruby-comment"># File app/models/offer/asian.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">transform_asia</span>(<span class="ruby-identifier">offer</span>)
+  <span class="ruby-comment"># @tmp_asian_logger = Logger.new(&quot;#{Rails.root}/log/asian.log&quot;) unless @tmp_asian_logger</span>
+  <span class="ruby-comment"># begin</span>
+  <span class="ruby-comment">#   @tmp_asian_logger.info &quot;FUCK&quot;</span>
+    <span class="ruby-identifier">default_prob</span> = <span class="ruby-constant">AsiaOffer</span>.<span class="ruby-identifier">get_default_prob</span>(<span class="ruby-identifier">$redis</span>, <span class="ruby-string">&quot;asia_prob&quot;</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">default_prob</span>.<span class="ruby-identifier">blank?</span>
+    <span class="ruby-identifier">base_asia</span> = <span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">test?</span>
+                  <span class="ruby-constant">AsiaOffer</span>.<span class="ruby-identifier">convert_to_asia_with_head</span>(<span class="ruby-identifier">offer</span>, <span class="ruby-identifier">default_prob</span>, <span class="ruby-identifier">offer</span>.<span class="ruby-identifier">test_flat_head</span>)
+                <span class="ruby-keyword">else</span>
+                  <span class="ruby-constant">AsiaOffer</span>.<span class="ruby-identifier">convert_to_asia</span>(<span class="ruby-identifier">offer</span>, <span class="ruby-identifier">default_prob</span>)
+                <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">base_asia</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">format_asia</span> = <span class="ruby-identifier">convert_format</span>(<span class="ruby-identifier">base_asia</span>)
+    <span class="ruby-identifier">a</span> = <span class="ruby-identifier">offer</span>.<span class="ruby-identifier">reload</span>.<span class="ruby-identifier">asian</span> 
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-identifier">format_asia</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">create!</span>(<span class="ruby-identifier">format_asia</span>)
+  <span class="ruby-comment"># rescue Exception =&gt; e</span>
+  <span class="ruby-comment">#   @tmp_asian_logger.error &quot;FUCK ASIA: #{e}-- line number: #{e.backtrace}&quot;</span>
+  <span class="ruby-comment"># end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-asian" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">asian</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="asian-source">
+            <pre><span class="ruby-comment"># File app/models/offer/asian.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">asian</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

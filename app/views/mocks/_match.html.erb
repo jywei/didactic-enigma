@@ -1,0 +1,51 @@
+<div class="container" style="margin-top: 50px;" id="match" data-match-id="<%= @match[:match_id] %>">
+  <div class="col-lg-4">
+    <h4>場次ID: <%= @match[:match_id] %></h4>
+    <p>類別：<%= Category.find(@match.meta[:category_id]).league_ch %></p>
+    <p>場次編號: <%= @match[:match_number] %></p>
+    <p>主隊：<%= @match[:team][:home][1] %></p>
+    <p>客隊：<%= @match[:team][:away][1] %></p>
+    <p>開賽時間：<%= @match[:start_time] %></p>
+    <p>玩法：
+      <% @match[:play].keys.each do |offer| %>
+        <%= link_to offer, "#{request.url.split("?").first}?offer=#{offer}&match_key=#{@match.key}" %> |
+      <% end %>
+    </p>
+    <p>狀態：<span class="all-stat"><%= @match[:stat] %></span></p>
+    <p>走地：<span class="match-running"><%= @match[:is_running] ? '是' : '否' %></span></p>
+    <% if @modifiers %>
+      <hr />
+      <p>主隊賭金：<span class="match-h-stake"><%= @match[:h_stake] %></span></p>
+      <p>客隊賭金：<span class="match-a-stake"><%= @match[:a_stake] %></span></p>
+    <% end %>
+  </div>
+  <div class="col-lg-4 offer" data-type="<%= @offer[:type] %>">
+    <h4>玩法：<%= @offer[:type] %></h4>
+    <p>狀態：        <span class="stat">          <%= @offer[:stat] %></span></p>
+    <% if @modifiers %>
+      <p class="red">主隊原始賠率：    <span class="h-base-odd">         <%= @offer[:h] %></span></p>
+      <p>客隊原始賠率：    <span class="a-base-odd">         <%= @offer[:a] %></span></p>
+      <p class="red">主隊原始串關賠率：<span class="h-base-parlay-odd">         <%= @parlay[:h] %></span></p>
+      <p>客隊原始串關賠率：<span class="a-base-parlay-odd">         <%= @parlay[:a] %></span></p>
+    <% end %>
+    <p class="red">主隊目前賠率：    <span class="h-odd">         <%= (@offer[:h] + @offer[:h_modifier]).round(3) %></span></p>
+    <p>客隊目前賠率：    <span class="a-odd">         <%= (@offer[:a] + @offer[:a_modifier]).round(3) %></span></p>
+    <p class="red">主隊目前串關賠率：<span class="h-parlay-odd">         <%= (@parlay[:h] + @parlay[:h_modifier]).round(3) %></span></p>
+    <p>客隊目前串關賠率：<span class="a-parlay-odd">         <%= (@parlay[:a] + @parlay[:a_modifier]).round(3) %></span></p>
+    <p>球頭：        <span class="head">          <%= @offer[:handicapped][:head] %></span></p>
+    <p>亞新盤：      <span class="asian">         <%= @offer[:handicapped][:proportion] %></span></p>
+    <p>走地：<span class="offer-running"><%= @offer[:is_running] ? '是' : '否' %></span></p>
+    <% if @modifiers %>
+      <hr />
+      <p>主隊賠率調整：    <span class="h-modifier">           <%= @offer[:h_modifier] %></span></p>
+      <p>客隊賠率調整：    <span class="a-modifier">           <%= @offer[:a_modifier] %></span></p>
+      <p>串關主隊賠率調整：<span class="parlay-h-modifier">    <%= @parlay[:h_modifier] %></span></p>
+      <p>串關客隊賠率調整：<span class="parlay-a-modifier">    <%= @parlay[:a_modifier] %></span></p>
+      <p>亞新盤調整：      <span class="asian-modifier">       <%= @offer[:handicapped][:modifier] %></span></p>
+      <p>串關亞新盤調整：  <span class="parlay-asian-modifier"><%= @parlay[:handicapped][:modifier] %></span></p>
+      <p>主隊賭金：        <span class="h-stake">              <%= @offer[:h_stake] %></span></p>
+      <p>客隊賭金：        <span class="a-stake">              <%= @offer[:a_stake] %></span></p>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,5 @@
+##################### Performance ############################
+
+Performance/RedundantMerge:
+  # Max number of key-value pairs to consider an offense
+  MaxKeyValuePairs: 2

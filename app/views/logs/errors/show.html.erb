@@ -1,0 +1,81 @@
+<%= render "mocks/header" %>
+
+<div class="container">
+  <h3><a href="/logs/errors"><</a> 程式錯誤 #<%= @log.id %></h3>
+  <hr />
+
+  <h4>基本資料</h4>
+  <table class="table table-bordered">
+    <thead class="log-error">
+      <th>名稱</th>
+      <th>使用者</th>
+      <th>完整路徑</th>
+      <th>時間</th>
+      <th>uuid</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @log.name %></td>
+        <td><%= @log.try(:user).try(:username) %></td>
+        <td><%= @log.path %></td>
+        <td><%= @log.created_at.in_time_zone('Asia/Taipei').strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td><%= @log.uuid %></td>
+      </tr>
+    </tbody>
+    <thead class="log-error">
+      <th colspan="5" style="text-align: center;">錯誤訊息</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5"><%= @log.message %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>參數</h4>
+  <% if @log.params.present? %>
+    <table class="table table-bordered">
+      <thead class="log-error">
+        <th>Key</th>
+        <th>Value</th>
+      </thead>
+      <tbody>
+        <% @log.params.each do |param| %>
+          <tr>
+            <td><%= param[0] %></td>
+            <td><%= param[1] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>無</p>
+  <% end %>
+
+  <h4>過程紀錄</h4>
+  <% if @log.data.present? %>
+    <% @log.data.each do |line| %>
+      <p><%= line %></p>
+    <% end %>
+  <% else %>
+    <p>無</p>
+  <% end %>
+  <div>
+    
+  </div>
+
+  <h4>錯誤來源</h4>
+  <table class="table table-bordered">
+    <thead class="log-error">
+      <th>路徑</th>
+    </thead>
+    <tbody>
+      <% @log.backtrace.each do |path| %>
+        <tr>
+          <td><%= path %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

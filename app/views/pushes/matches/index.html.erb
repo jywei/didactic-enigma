@@ -1,0 +1,69 @@
+<%= render "mocks/header" %>
+
+<div class="container">
+  <div class="col-lg-4">
+    <h4>最近更新的比賽</h4>
+    <table class="table table-bordered">
+      <thead>
+        <th>ID</th>
+        <th>球種</th>
+        <th>聯盟</th>
+      </thead>
+      <tbody>
+        <% @matches.each do |match| %>
+          <tr>
+            <td><%= link_to match.id, "/pushes/matches/#{match.id}" %></td>
+            <td><%= match.category.sport.name if match.category.present? %></td>
+            <td><%= match.category.league_name if match.category.present? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-8">
+    <h4>最近5筆紀錄</h4>
+    <table class="table table-bordered">
+      <thead>
+        <th>ID</th>
+        <th>時間</th>
+        <td>玩法</td>
+        <td>動作</td>
+        <td>Tx match id</td>
+      </thead>
+      <tbody>
+        <% @logs.each do |log| %>
+          <tr>
+            <td><%= link_to log.id, "/pushes/logs/#{log.id}" %></td>
+            <td><%= log.created_at.in_time_zone('Asia/Taipei').strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= log.ot_name %></td>
+            <td><%= log.action %></td>
+            <td><%= log.tx_match_id %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-8">
+    <h4>最近的錯誤紀錄</h4>
+    <table class="table table-bordered">
+      <thead>
+        <th>ID</th>
+        <th>時間</th>
+        <td>玩法</td>
+        <td>動作</td>
+        <td>Tx match id</td>
+      </thead>
+      <tbody>
+        <% @error_logs.each do |log| %>
+          <tr>
+            <td><%= link_to log.id, "/pushes/logs/#{log.id}" %></td>
+            <td><%= log.created_at.in_time_zone('Asia/Taipei').strftime("%Y-%m-%d %H:%M:%S") %></td>
+            <td><%= log.ot_name %></td>
+            <td><%= log.action %></td>
+            <td><%= log.tx_match_id %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<%= render 'mocks/header' %>
+
+<div class="container">
+  <h2>所有比賽</h2>
+  <% @matches.each do |match| %>
+    <div>
+      <p>ID: <%= link_to match.id, match_path(match) %> | TX ID: <%= match.leader_id %> | 編號: <%= match.match_number %></p>
+      <p>
+        球類：<%= match.category.sport.name if match.category.sport.present? %>(<%= match.category.sport.id %>) | 
+        聯盟：<%= match.category.league_name if match.category.present? %>(<%= match.category.id %>) | 
+        開賽時間：<%= match.start_time.strftime("%Y-%m-%d %H:%M:%S") %>
+      </p>
+      <p>主隊：<%= match.hteam.name %> (<%= match.hteam.id %>)</p>
+      <p>客隊：<%= match.ateam.name %> (<%= match.ateam.id %>)</p>
+      <table class="table table-bordered">
+        <tr>
+          <td>來源</td>
+          <td>資料ID</td>
+          <td>玩法</td>
+          <td>賠率差距</td>
+          <td class="bg-blue">主賠率</td>
+          <td>主機率</td>
+          <td class="bg-blue">客賠率</td>
+          <td>客機率</td>
+          <td class="bg-blue">平賠率</td>
+          <td>平機率</td>
+          <td>球頭</td>
+          <td>水錢</td>
+          <td>開盤商</td>
+          <td>更新時間</td>
+        </tr>
+        <% if afu_match = @afu_matches[match.id.to_s] %>
+          <% match.offers.each do |offer| %>
+            <% afu_offer = afu_match[:play][offer.name] %>
+            <tr class="border-top">
+              <td>afu</td>
+              <td><%= offer.id %></td>
+              <td><%= offer[:name] %></td>
+              <td><%= offer.odd_diff.round(4) %></td>
+              <td class="bg-blue"><%= (offer[:h_odd] + 1).round(4) %></td>
+              <td class=""><%= offer[:h_oppo] %></td>
+              <td class="bg-blue"><%= (offer[:a_odd] + 1).round(4) %></td>
+              <td class=""><%= offer[:a_oppo] %></td>
+              <td class="bg-blue"><%= (offer[:d_odd] + 1).round(4) %></td>
+              <td class=""><%= offer[:d_oppo] %></td>
+              <td><%= offer[:head] %></td>
+              <td><%= offer.water %></td>
+              <td><%= offer.book_maker.name %></td>
+              <td><%= afu_offer[:last_updated][:push] %></td>
+            </tr>
+            <% if tx_offer = @tx_offers[offer.leader_id].try(:from_marshal) %>
+              <tr>
+                <td>tx</td>
+                <td><%= offer.leader_id %></td>
+                <td><%= offer[:name] %></td>
+                <td></td>
+                <td class="bg-blue"><%= tx_offer[:h_odd] %></td>
+                <td><%= tx_offer[:h_oppo] %></td>
+                <td class="bg-blue"><%= tx_offer[:a_odd] %></td>
+                <td><%= tx_offer[:a_oppo] %></td>
+                <td class="bg-blue"><%= tx_offer[:d_odd] %></td>
+                <td><%= tx_offer[:d_oppo] %></td>
+                <td><%= tx_offer[:head] %></td>
+                <td><%= tx_offer[:water_proportion] %></td>
+                <td></td>
+                <td><%= tx_offer[:last_updated] %></td>
+              </tr>
+            <% end %>
+            <% if offer[:incoming_request].any? %>
+              <tr>
+                <td>PUSH訊息</td>
+                <td colspan="12"><%= offer[:incoming_request].to_s %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+</div>

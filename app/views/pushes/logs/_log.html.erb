@@ -1,0 +1,9 @@
+<% if params[:offer] %>
+  <h4>僅顯示與 <%= params[:offer] %> 玩法相關的訊息</h4>
+<% end %>
+
+<%= render "pushes/logs/log_table", log: @log, tx: true %>
+
+<% @logs.each do |log| %>
+  <%= render "pushes/logs/log_table", log: log, tx: false %>
+<% end %>

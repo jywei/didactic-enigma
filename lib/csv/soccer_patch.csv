@@ -1,0 +1,17 @@
+"足球","soccer",15,"一輸二贏",100,20,60,75,"one_win",NULL,NULL
+"足球","soccer",16,"三路",500,20,60,75,"three_way",NULL,NULL
+"足球半場","ht_soccer",15,"一輸二贏",100,20,60,75,"one_win","ht",NULL
+"足球半場","ht_soccer",1,"讓球",100,20,60,75,"point","ht",NULL
+"足球半場","ht_soccer",2,"大小",100,20,60,75,"ou","ht",NULL
+"足球半場","ht_soccer",3,"獨贏",500,20,60,75,"ml","ht",NULL
+"足球半場","ht_soccer",4,"單雙",100,20,60,75,"odd_even","ht",NULL
+"足球半場","ht_soccer",5,"走地讓球",100,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",6,"走地大小",100,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",7,"波膽",500,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",8,"總入球",500,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",9,"半全場",500,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",10,"讓分過關",525,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",11,"綜合過關",525,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",12,"標準過關",525,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",13,"全部",100,20,60,75,NULL,"ht",NULL
+"足球半場","ht_soccer",16,"三路",500,20,60,75,"three_way","ht",NULL

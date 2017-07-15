@@ -1,0 +1,30 @@
+<%= render 'header' %>
+
+<div class="container" style="margin-top: 20px;">
+  <table class="table table-bordered">
+    <thead>
+      <th>連線ID</th>
+      <th>Address</th>
+      <th>使用者</th>
+      <th>訂閱頻道</th>
+    </thead>
+    <% @conns.each do |conn| %>
+      <tr>
+        <td><%= conn[:identifier] %></td>
+        <td><%= conn[:address] %></td>
+        <td>
+          <% if conn[:current_user] %>
+            <%= conn[:current_user].try(:id) %>. <%= conn[:current_user].try(:username) %>
+          <% end %>
+        </td>
+        <td>
+          <ul>
+            <% conn[:subscriptions].each do |subscription| %>
+              <li><%= subscription %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

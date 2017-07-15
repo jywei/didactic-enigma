@@ -1,0 +1,3 @@
+development: localhost:6379
+test: localhost:6379
+production: afu2.ze67a8.0001.apne1.cache.amazonaws.com:6379

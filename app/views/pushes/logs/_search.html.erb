@@ -1,0 +1,53 @@
+<div>
+  <%= form_tag "#{@search_id}" + "#log", method: :get do %>
+    <div class="row search_bar">
+      <div class="col-xs-3">
+        <%= label_tag '事件' %>
+        <%= select_tag(:event, options_for_select({"全部" => "", "offer" => "offer", "match" => "match", "variants" => "variants", "cache" => "cache"}, @search_params[:event]), class: "form-control") %>
+      </div>
+
+      <div class="col-xs-3">
+        <%= label_tag '動作' %>
+        <%= text_field_tag 'actions', @search_params[:actions], class: "form-control"%>
+      </div>
+
+      <div class="col-xs-6">
+        <%= label_tag '時間' %>
+        <div class="row">
+          <div class="col-xs-5">
+            <%= text_field_tag 'date_start', @search_params[:date_start], class: "form-control", id: "datepicker1" %>
+          </div>
+          <div class="col-xs-1">-</div>
+          <div class="col-xs-5">
+            <%= text_field_tag 'date_end', @search_params[:date_end], class: "form-control", id: "datepicker2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row search_bar">
+      <div class="col-xs-3">
+        <%= label_tag '提供商' %>
+        <%= select_tag(:book_maker_id, options_for_select({'全部' => '', 'PinnacleSports' => '59', 'Bet 365' => '67'}, @search_params[:book_maker_id]), class: "form-control") %>
+      </div>
+
+      <div class="col-xs-3">
+        <%= label_tag "玩法ID", nil, class: "uppercase" %>
+        <%= text_field_tag 'ot', @search_params[:ot], class: "form-control" %>
+      </div>
+
+      <div class="col-xs-3">
+        <%= label_tag '球頭' %>
+        <%= text_field_tag 'head', @search_params[:head], class: "form-control" %>
+      </div>
+
+      <br>
+
+      <div class="col-xs-3">
+        <%= submit_tag "搜尋", class: "btn btn-default" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>

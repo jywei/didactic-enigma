@@ -1,0 +1,49 @@
+<%= render "mocks/header" %>
+
+<div class="container">
+  <p>聯盟：</p>
+  <input type="text" class="search-match-league" value="<%= params[:league_id] || '716' %>" />
+  <p></p>
+  <button class="btn btn-primary search-match-search">搜尋</button>
+  <p></p>
+  <p id="result"></p>
+  <table class="table table-bordered matches">
+    <thead>
+      <th>ID</th>
+      <th>開賽時間</th>
+      <th>隊伍</th>
+      <th>提供商</th>
+      <th>場次類別</th>
+      <% @offers.each do |o| %>
+        <th><%= o['ch'] %></th>
+      <% end %>
+    </thead>
+    <tbody class="matches-body">
+      <% @matches.each do |k, v| %>
+        <tr class="<%= "running" if v[:is_running] %>">
+          <td><%= link_to v[:id], "/pushes/matches/#{v[:id]}/offers", target: '_blank' %></td>
+          <td>
+            <p><%= v[:start_time][5..9] %></p>
+            <p><%= v[:start_time][10..-1] %></p>
+          </td>
+          <td>
+            <p>主：<%= v[:team][:home][1] %></p>
+            <p>客：<%= v[:team][:away][1] %></p>
+          <td><%= v[:book_maker] %></td>
+          <td><%= v[:halves][:name] %></td>
+          <% @offers.map {|n| v[:play][n['en']] }.each do |offer| %>
+            <td>
+              <% if offer[:stat] == 'unavailable' %>
+                <p>未開</p>
+              <% else %>
+                <p>頭：<%= offer[:handicapped][:head] == 0.0 ? "-" : offer[:handicapped][:head] %></p>
+                <p>主：<%= offer[:h] %></p>
+                <p>客：<%= offer[:a] %></p>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

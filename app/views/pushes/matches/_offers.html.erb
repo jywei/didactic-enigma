@@ -1,0 +1,84 @@
+<% if @afu_match %>
+  <h3>Redis 內一般玩法</h3>
+  <%= render "pushes/matches/cache_offers", cache_offers: @afu_match[:play] %>
+  <h3>Redis 內串關玩法</h3>
+  <%= render "pushes/matches/cache_offers", cache_offers: @afu_match[:parlay] %>
+<% end %>
+
+<% @offers.each do |offers| %>
+  <h3><%= offers[:name] %></h3>
+  <table class="table table-bordered">
+    <thead>
+      <th>ID</th>
+      <th>類型</th>
+      <th>狀態</th>
+      <th>球頭</th>
+      <th>主賠率</th>
+      <th>客賠率</th>
+      <th>平賠率</th>
+      <th>主機率</th>
+      <th>客機率</th>
+      <th>平機率</th>
+      <th>機率差異</th>
+      <th>平盤</th>
+      <th>走地</th>
+      <th>最後更新</th>
+    </thead>
+    <tbody>
+      <% offers[:offers].each do |offer| %>
+        <tr>
+          <td class="<%= in_current_offer_ids(offer[:id]) %>"><%= offer[:id] %></td>
+          <td>一般</td>
+          <td><%= offer[:stat] %></td>
+          <td><%= offer[:head] %></td>
+          <td><%= offer[:h_odd] %></td>
+          <td><%= offer[:a_odd] %></td>
+          <td><%= offer[:d_odd] %></td>
+          <td><%= offer[:h_oppo] %></td>
+          <td><%= offer[:a_oppo] %></td>
+          <td><%= offer[:d_oppo] %></td>
+          <td><%= offer[:oppo_diff] %></td>
+          <td><%= offer[:flat] ? "是" : "" %></td>
+          <td><%= offer[:is_running] ? "是" : "" %></td>
+          <td><%= time_format(offer[:updated_at]) %></td>
+        </tr>
+        <% if o = offer[:asian] %>
+          <tr class="sub">
+            <td></td>
+            <td>亞新盤</td>
+            <td></td>
+            <td><%= o.asia_format %></td>
+            <td><%= o.h_odd %></td>
+            <td><%= o.a_odd %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= time_format(o.updated_at) %></td>
+          </tr>
+        <% end %>
+        <% if p = offer[:parlay] %>
+          <tr class="sub">
+            <td></td>
+            <td>串關</td>
+            <td></td>
+            <td><%= p.head %></td>
+            <td><%= p.h_odd %></td>
+            <td><%= p.a_odd %></td>
+            <td><%= p.d_odd %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= time_format(p.updated_at) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

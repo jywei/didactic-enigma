@@ -1,0 +1,49 @@
+<%= render 'header' %>
+
+<div class="container">
+  <h3>系統狀態</h3>
+  <table class="table table-bordered">
+    <thead class="log-error">
+      <th>項目</th>
+      <th>結果</th>
+      <th>說明</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>控台PUSH</td>
+        <td class="push-result"><%= @result %></td>
+        <td class="push-desc"> <%= @ts ? "最後建立時間 #{@ts}" : "" %></td>
+      </tr>
+      <% if @tx_log %>
+        <tr>
+          <td>TX PUSH</td>
+          <td class="push-result"><%= @tx_result %></td>
+          <td class="push-desc"> <%= @tx_ts ? "最後戳記時間 #{@tx_ts}" : "" %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>工作排程</td>
+        <td class="push-result"><%= @workers.sum {|w| w[:count] } < 1000 ? "正常" : "可能異常" %></td>
+        <td class="push-desc">
+          <table class="table">
+            <thead>
+              <th>名稱</th>
+              <th>剩餘數量</th>
+              <th>最後執行時間</th>
+              <th>執行時間長度</th>
+            </thead>
+            <% @workers.each do |worker| %>
+              <tr>
+                <td><%= worker[:name] %></td>
+                <td><%= worker[:count] %></td>
+                <td><%= worker[:last_updated] %></td>
+                <td><%= worker[:processing_time] %></td>
+              </tr>
+            <% end %>
+          </table>
+          <%= link_to "刪除全部排程", "/mocks/delete_all", method: :delete, class: 'btn btn-danger pull-right' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

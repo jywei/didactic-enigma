@@ -1,0 +1,42 @@
+// table.log-error {
+//   thead th {
+//     background-color: red;
+//   }
+// }
+
+thead.log-error th {
+  background-color: #8A8A8A;
+  color: white;
+}
+
+tr.light-gray td {
+  background-color: #EFEFEF;
+}
+
+.search_bar {
+  padding: 10px 0;
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+}
+
+div table tbody.matches-body td {
+  vertical-align: inherit;
+}
+
+tr.sub td {
+  background-color: #FBFBFB;
+}
+
+.current-offer {
+  background-color: #DDFDFF;
+}
+
+tr.running td {
+  background-color: #FFFED9;
+}
+
+tr.archive td {
+  background-color: #D2D2D2;
+}

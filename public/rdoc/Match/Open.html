@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Match::Open - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveSupport::HashWithIndifferentAccess
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Open/Serializer.html">Match::Open::Serializer</a>
+  
+  
+  </ul>
+</div>
+
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><a class="extend" href="Open/Query.html">Match::Open::Query</a>
+  
+  
+  </ul>
+</div>
+
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-adjust_position_from_orders-21">#adjust_position_from_orders!</a>
+    
+    <li ><a href="#method-i-adjust_position_from_thresholds-21">#adjust_position_from_thresholds!</a>
+    
+    <li ><a href="#method-i-arg_type">#arg_type</a>
+    
+    <li ><a href="#method-i-assign-21">#assign!</a>
+    
+    <li ><a href="#method-i-assign_offer">#assign_offer</a>
+    
+    <li ><a href="#method-i-available-3F">#available?</a>
+    
+    <li ><a href="#method-i-change_db_stat">#change_db_stat</a>
+    
+    <li ><a href="#method-i-change_redis_stat">#change_redis_stat</a>
+    
+    <li ><a href="#method-i-change_stat-21">#change_stat!</a>
+    
+    <li ><a href="#method-i-d-3F">#d?</a>
+    
+    <li ><a href="#method-i-default_offer_timestamp">#default_offer_timestamp</a>
+    
+    <li ><a href="#method-i-find_flat">#find_flat</a>
+    
+    <li ><a href="#method-i-id">#id</a>
+    
+    <li ><a href="#method-i-key">#key</a>
+    
+    <li ><a href="#method-i-modifier">#modifier</a>
+    
+    <li ><a href="#method-i-offer_name">#offer_name</a>
+    
+    <li ><a href="#method-i-offers">#offers</a>
+    
+    <li ><a href="#method-i-parlays">#parlays</a>
+    
+    <li ><a href="#method-i-reload">#reload</a>
+    
+    <li ><a href="#method-i-remove_offer_type">#remove_offer_type</a>
+    
+    <li ><a href="#method-i-save-21">#save!</a>
+    
+    <li ><a href="#method-i-series-3F">#series?</a>
+    
+    <li ><a href="#method-i-to_group">#to_group</a>
+    
+    <li ><a href="#method-i-to_group_match">#to_group_match</a>
+    
+    <li ><a href="#method-i-update_db_offer">#update_db_offer</a>
+    
+    <li ><a href="#method-i-update_modifier">#update_modifier</a>
+    
+    <li ><a href="#method-i-update_odd-21">#update_odd!</a>
+    
+    <li ><a href="#method-i-update_parlay">#update_parlay</a>
+    
+    <li ><a href="#method-i-update_redis_modifier">#update_redis_modifier</a>
+    
+    <li ><a href="#method-i-update_redis_prop">#update_redis_prop</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Match::Open">
+  <h1 id="class-Match::Open" class="class">
+    class Match::Open
+  </h1>
+
+  <section class="description">
+    
+<p>儲存於Redis當中的比賽格式，方便前端拉取API時直接將資料格式吐出去</p>
+
+<p>若要產生一組資料，API設計上是由 <a
+href="Open/Builder.html#method-i-to_open">Match::Open::Builder#to_open</a>
+將一筆 <a href="../Match.html">Match</a> 資料轉為 match/open</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">to_open</span>
+</pre>
+
+<p>或是可以直接存到Redis當中：</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span>.<span class="ruby-identifier">open!</span>
+</pre>
+
+<p>從Redis當中取得 match/open ：</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>
+
+<span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match</span>(<span class="ruby-identifier">match</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-comment"># 或是</span>
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">afu</span>
+</pre>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-db_match" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">db_match</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-meta" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">meta</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(match, args = {data: {}, meta: {}})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>產生新的cache格式比賽</p>
+
+<p>參數：</p>
+<ul><li>
+<p>match: <a href="../Match.html">Match</a> 儲存在db裡面的match</p>
+</li><li>
+<p>args: <a href="../Hash.html">Hash</a> 包含兩個資料: {  data: <a
+href="../Hash.html">Hash</a> (顯示於前端),  meta: <a
+href="../Hash.html">Hash</a> (純粹後端使用) }</p>
+</li></ul>
+
+<p>目前都是藉由 <a
+href="Open/Builder.html#method-i-to_open">Match::Open::Builder#to_open</a>
+直接將一場match轉為match/open：</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">to_open</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">match</span>, <span class="ruby-identifier">args</span> = {<span class="ruby-identifier">data</span><span class="ruby-operator">:</span> {}, <span class="ruby-identifier">meta</span><span class="ruby-operator">:</span> {}})
+  <span class="ruby-identifier">args</span>[<span class="ruby-value">:data</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">_</span><span class="ruby-operator">|</span> <span class="ruby-keyword">self</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:data</span>][<span class="ruby-identifier">k</span>] }
+  <span class="ruby-ivar">@meta</span>     = <span class="ruby-identifier">args</span>[<span class="ruby-value">:meta</span>]
+  <span class="ruby-ivar">@db_match</span> = <span class="ruby-identifier">match</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-adjust_position_from_orders-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjust_position_from_orders!</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>根據訂單來調整特定玩法的部位</p>
+
+<p>參數：</p>
+
+<pre class="ruby">{
+  <span class="ruby-identifier">amount</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>,
+  <span class="ruby-identifier">prize</span><span class="ruby-operator">:</span> <span class="ruby-value">50000</span>,
+  <span class="ruby-identifier">rate_mode</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;any&#39;</span>,
+  <span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-value">1234</span>,
+  <span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;h&quot;</span>,
+  <span class="ruby-identifier">offer</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;point&quot;</span>,
+  <span class="ruby-identifier">odd</span><span class="ruby-operator">:</span> <span class="ruby-value">0.97</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="adjust_position_from_orders-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adjust_position_from_orders!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">stake</span>       = <span class="ruby-node">&quot;#{args[:team]}_stake&quot;</span>.<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-identifier">stake</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:amount</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>].<span class="ruby-identifier">to_sym</span>].<span class="ruby-identifier">update_from_order</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-adjust_position_from_thresholds-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjust_position_from_thresholds!</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>根據門檻的移動來調整特定玩法的部位</p>
+
+<p>參數同 <a
+href="Open.html#method-i-adjust_position_from_orders-21">adjust_position_from_orders!</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="adjust_position_from_thresholds-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adjust_position_from_thresholds!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>]].<span class="ruby-identifier">update_from_thresholds</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-arg_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">arg_type</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>從參數取得參數類別</p>
+          
+          
+
+          
+          <div class="method-source-code" id="arg_type-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">arg_type</span>
+  <span class="ruby-ivar">@args</span>[<span class="ruby-value">:type</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-assign-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assign!</span><span
+            class="method-args">(db_offer, match_key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將目標資料庫的offer轉換為offer/open並儲存到本場比賽的特定玩法上，並儲存到Redis內。</p>
+
+<p>參數：</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_open</span>
+<span class="ruby-identifier">offer</span> = <span class="ruby-constant">Offer</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">match</span>)
+
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">assign!</span>(<span class="ruby-identifier">offer</span>, <span class="ruby-identifier">match</span>.<span class="ruby-identifier">key</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="assign-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assign!</span>(<span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">match_key</span>)
+  <span class="ruby-identifier">assign_offer</span>(<span class="ruby-value">:play</span>, <span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">match_key</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">db_offer</span>.<span class="ruby-identifier">parlay</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">db_offer</span>.<span class="ruby-identifier">update_parlay</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assign_offer</span>(<span class="ruby-value">:parlay</span>, <span class="ruby-identifier">db_offer</span>.<span class="ruby-identifier">reload</span>.<span class="ruby-identifier">parlay</span>, <span class="ruby-identifier">match_key</span>)
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-assign_offer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assign_offer</span><span
+            class="method-args">(type, db_offer, match_key)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將目標資料庫的offer轉換為offer/open並儲存至指定的玩法類別上</p>
+          
+          
+
+          
+          <div class="method-source-code" id="assign_offer-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_offer</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">match_key</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-identifier">type</span>][<span class="ruby-identifier">db_offer</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">db_offer</span>.<span class="ruby-identifier">to_open</span>(<span class="ruby-identifier">match_key</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-available-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>判斷這場比賽是否已經在資料庫有資料</p>
+          
+          
+
+          
+          <div class="method-source-code" id="available-3F-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 282</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">available?</span>
+  <span class="ruby-identifier">meta</span>[<span class="ruby-value">:available</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-change_stat-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_stat!</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>修改特定玩法的狀態</p>
+
+<p>參數：</p>
+
+<pre class="ruby">{
+  <span class="ruby-identifier">offer</span><span class="ruby-operator">:</span> <span class="ruby-identifier">玩法名稱</span>(<span class="ruby-string">&quot;ou&quot;</span>, <span class="ruby-string">&quot;point&quot;</span>)<span class="ruby-identifier">或</span><span class="ruby-string">&quot;all&quot;</span>,
+  <span class="ruby-identifier">stat</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;normal&quot;</span><span class="ruby-identifier">或</span><span class="ruby-string">&quot;disabled&quot;</span><span class="ruby-identifier">或</span><span class="ruby-string">&quot;paused&quot;</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="change_stat-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change_stat!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">with_indifferent_access</span>
+  <span class="ruby-identifier">change_redis_stat</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">change_db_stat</span>(<span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-d-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">d?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>判斷這場比賽是否有平手的賭金存在，一般來說只會有足球的場次</p>
+          
+          
+
+          
+          <div class="method-source-code" id="d-3F-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">d?</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:d_stake</span>].<span class="ruby-identifier">present?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_offer_timestamp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_offer_timestamp</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將底下所有一般玩法拉出來塞入一個空的 Hash，用於紀錄timestamp使用</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_open</span>
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">default_offer_timestamp</span>
+<span class="ruby-comment"># =&gt; {&quot;three_way&quot;=&gt;{}, &quot;point&quot;=&gt;{}, &quot;ou&quot;=&gt;{}, &quot;one_win&quot;=&gt;{}, &quot;odd_even&quot;=&gt;{}}</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="default_offer_timestamp-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_offer_timestamp</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>].<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">offer</span>, <span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-identifier">result</span>[<span class="ruby-identifier">offer</span>[<span class="ruby-value">0</span>]] = {} }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_flat" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_flat</span><span
+            class="method-args">(offer_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>找到特定玩法在資料庫內最平球頭的玩法</p>
+
+<pre class="ruby"><span class="ruby-identifier">match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_open</span>
+<span class="ruby-identifier">match</span>.<span class="ruby-identifier">find_flat</span>(<span class="ruby-string">&quot;point&quot;</span>)
+<span class="ruby-comment"># =&gt; #&lt;Offer:0x007fd92f3ac4c8&gt;</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="find_flat-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_flat</span>(<span class="ruby-identifier">offer_name</span>)
+  <span class="ruby-operator">::</span><span class="ruby-constant">Offer</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">flat</span>(<span class="ruby-identifier">offer_name</span>).<span class="ruby-identifier">to_open</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>取得自己在資料庫中的比賽id</p>
+          
+          
+
+          
+          <div class="method-source-code" id="id-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:id</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">key</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>取得自己在Redis當中的id</p>
+          
+          
+
+          
+          <div class="method-source-code" id="key-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">key</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:match_id</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-offers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">offers</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>取得這場比賽底下的所有一般玩法</p>
+          
+          
+
+          
+          <div class="method-source-code" id="offers-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">offers</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parlays" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parlays</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>取得這場比賽底下的所有串關玩法</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parlays-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parlays</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:parlay</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>重新從Redis當中讀取</p>
+          
+          
+
+          
+          <div class="method-source-code" id="reload-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reload</span>
+  <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">key</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_offer_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_offer_type</span><span
+            class="method-args">(type = :parlay)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>移除指定的offer類別，指一般或串關，用於準備丟到前端時，看前端指定是要串關賠率或是一般賠率</p>
+
+<p>參數：</p>
+<ul><li>
+<p>type: Symbol 應為 :play 或 :parlay</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_offer_type-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_offer_type</span>(<span class="ruby-identifier">type</span> = <span class="ruby-value">:parlay</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:parlay</span>
+    <span class="ruby-identifier">delete</span>(<span class="ruby-value">:parlay</span>)
+    <span class="ruby-identifier">meta</span>[<span class="ruby-value">:parlay</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:play</span>
+    <span class="ruby-identifier">delete</span>(<span class="ruby-value">:play</span>)
+    <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>] = <span class="ruby-keyword">self</span>[<span class="ruby-value">:parlay</span>]
+    <span class="ruby-identifier">delete</span>(<span class="ruby-value">:parlay</span>)
+    <span class="ruby-identifier">meta</span>[<span class="ruby-value">:parlay</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-save-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save!</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>把目前的整包比賽存到redis當中</p>
+
+<p>如果之前已經儲存過，就會回傳false，如果是一場新的比賽，就會回傳true</p>
+          
+          
+
+          
+          <div class="method-source-code" id="save-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">db</span>.<span class="ruby-identifier">hset</span>(<span class="ruby-identifier">$matches_key</span>, <span class="ruby-identifier">key</span>, <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-keyword">self</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_group</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>利用這場比賽內的資料，轉換為 <a href="Open/Group.html">Group</a> 要吐到前端的資料格式</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_group-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_group</span>
+  <span class="ruby-identifier">open_group</span> = <span class="ruby-constant">Group</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">keys</span> = <span class="ruby-operator">%</span>(
+    <span class="ruby-identifier">start_time</span>
+    <span class="ruby-identifier">start_time_int</span>
+    <span class="ruby-identifier">sport</span>
+    <span class="ruby-identifier">team</span>
+    <span class="ruby-identifier">h_score</span>
+    <span class="ruby-identifier">a_score</span>
+    <span class="ruby-identifier">h_stake</span>
+    <span class="ruby-identifier">a_stake</span>
+    <span class="ruby-identifier">d_stake</span>
+    <span class="ruby-identifier">match_result</span>
+    <span class="ruby-identifier">is_running</span>
+    <span class="ruby-identifier">book_maker</span>
+    <span class="ruby-identifier">group_id</span>
+  )
+  <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">open_group</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-keyword">self</span>[<span class="ruby-identifier">k</span>] }
+  <span class="ruby-identifier">open_group</span>[<span class="ruby-value">:match_id</span>] = <span class="ruby-keyword">self</span>[<span class="ruby-value">:_match_id</span>]
+  <span class="ruby-identifier">open_group</span>[<span class="ruby-value">:halves_matches</span>] = {}
+  <span class="ruby-identifier">open_group</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_group_match" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_group_match</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>如果這場比賽要吐到前端的資料是依附在 <a href="Open/Group.html">Group</a>
+底下，則刪除其他資料，僅保留部分賠率相關資訊</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_group_match-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_group_match</span>
+  <span class="ruby-identifier">keep</span>(<span class="ruby-operator">*</span><span class="ruby-node">%w(
+       match_id
+       _halves_match_id
+       match_number
+       halves
+       play
+       parlay
+       h_stake
+       a_stake
+       h_score
+       a_score
+       stat
+      )</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_modifier" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_modifier</span><span
+            class="method-args">(db_offer, redis_offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>更新特定玩法的賠率調整值</p>
+
+<p>參數：</p>
+<ul><li>
+<p>db_offer: <a href="../Offer.html">Offer</a></p>
+</li><li>
+<p>redis_offer: <a href="../Offer/Open.html">Offer::Open</a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_modifier-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_modifier</span>(<span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">redis_offer</span>)
+  <span class="ruby-identifier">arg_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;asian&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">update_redis_prop</span>(<span class="ruby-identifier">redis_offer</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">update_redis_modifier</span>(<span class="ruby-identifier">redis_offer</span>)
+  <span class="ruby-identifier">update_db_offer</span>(<span class="ruby-identifier">db_offer</span>)
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;#{Thread.current.object_id}: 套用#{arg_type}賠率調整值: #{modifier}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_odd-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_odd!</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>調整比賽底下其中一個玩法的賠率</p>
+
+<p>參數：</p>
+
+<pre class="ruby">{
+  <span class="ruby-identifier">offer</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>,
+  <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>, <span class="ruby-comment"># =&gt; 隊伍 &#39;h&#39;, &#39;a&#39;, or &#39;asian&#39;</span>
+  <span class="ruby-identifier">modifier</span><span class="ruby-operator">:</span> <span class="ruby-constant">Float</span>,
+  <span class="ruby-identifier">variant</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>, <span class="ruby-comment"># =&gt; &#39;normal&#39; or &#39;parlay&#39;</span>
+}
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="update_odd-21-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_odd!</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">with_indifferent_access</span>
+  <span class="ruby-identifier">redis_offer</span> = <span class="ruby-identifier">offers</span>[<span class="ruby-identifier">offer_name</span>]
+  <span class="ruby-identifier">db_offer</span> = <span class="ruby-identifier">redis_offer</span>.<span class="ruby-identifier">db_offer</span>
+  <span class="ruby-identifier">update_modifier</span>(<span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">redis_offer</span>)
+  <span class="ruby-identifier">update_parlay</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">series?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-change_db_stat" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_db_stat</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>修改特定玩法在資料庫內的狀態</p>
+          
+          
+
+          
+          <div class="method-source-code" id="change_db_stat-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 360</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change_db_stat</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">new_stat</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:stat</span>]
+  <span class="ruby-identifier">current_match</span> = <span class="ruby-constant">Match</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>[<span class="ruby-string">&#39;id&#39;</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;all&#39;</span>
+    <span class="ruby-identifier">current_match</span>.<span class="ruby-identifier">offers</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">stat</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new_stat</span>)
+    <span class="ruby-identifier">current_match</span>.<span class="ruby-identifier">update!</span>(<span class="ruby-identifier">stat</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new_stat</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">offer</span> = <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>]]
+    <span class="ruby-identifier">current_offers</span> = <span class="ruby-identifier">current_match</span>.<span class="ruby-identifier">offers</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">offer</span>[<span class="ruby-string">&#39;type&#39;</span>])
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Match has no offer name #{offer[&#39;type&#39;]}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_offers</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">current_offers</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">stat</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new_stat</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-change_redis_stat" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">change_redis_stat</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>修改特定玩法在Redis內的狀態</p>
+          
+          
+
+          
+          <div class="method-source-code" id="change_redis_stat-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 349</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">change_redis_stat</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;all&#39;</span>
+    <span class="ruby-keyword">self</span>[<span class="ruby-value">:stat</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:stat</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>]][<span class="ruby-string">&#39;stat&#39;</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:stat</span>]
+    <span class="ruby-keyword">self</span>[<span class="ruby-value">:parlay</span>][<span class="ruby-identifier">args</span>[<span class="ruby-value">:offer</span>]][<span class="ruby-string">&#39;stat&#39;</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-value">:stat</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-modifier" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modifier</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>從參數取得modifier值</p>
+          
+          
+
+          
+          <div class="method-source-code" id="modifier-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">modifier</span>
+  <span class="ruby-ivar">@args</span>[<span class="ruby-value">:modifier</span>].<span class="ruby-identifier">to_f</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-offer_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">offer_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>從參數取得offer名稱</p>
+          
+          
+
+          
+          <div class="method-source-code" id="offer_name-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 307</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">offer_name</span>
+  <span class="ruby-ivar">@args</span>[<span class="ruby-value">:offer</span>].<span class="ruby-identifier">to_sym</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-series-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">series?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>判斷此場比賽底下的特定玩法是否有和串關連動</p>
+          
+          
+
+          
+          <div class="method-source-code" id="series-3F-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">series?</span>
+  <span class="ruby-identifier">offers</span>[<span class="ruby-ivar">@args</span>[<span class="ruby-string">&#39;offer&#39;</span>]][<span class="ruby-value">:series</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_db_offer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_db_offer</span><span
+            class="method-args">(offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將目前特定玩法的賠率調整值更新到資料庫內</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update_db_offer-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 322</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_db_offer</span>(<span class="ruby-identifier">offer</span>)
+  <span class="ruby-identifier">offer</span>.<span class="ruby-identifier">update_attributes</span>({ <span class="ruby-node">&quot;#{arg_type}_modifier&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">modifier</span> })
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_parlay" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_parlay</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>從資料庫撈取串關盤資料，並更新於特定玩法上</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update_parlay-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_parlay</span>
+  <span class="ruby-identifier">redis_offer</span> = <span class="ruby-identifier">parlays</span>[<span class="ruby-identifier">offer_name</span>]
+  <span class="ruby-identifier">db_offer</span> = <span class="ruby-constant">Offer</span><span class="ruby-operator">::</span><span class="ruby-constant">Parlay</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">redis_offer</span>[<span class="ruby-value">:parlay_id</span>])
+  <span class="ruby-identifier">update_modifier</span>(<span class="ruby-identifier">db_offer</span>, <span class="ruby-identifier">redis_offer</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_redis_modifier" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_redis_modifier</span><span
+            class="method-args">(offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將目前特定玩法的賠率調整值更新到Redis內</p>
+
+<p>參數：</p>
+<ul><li>
+<p>offer: <a href="../Offer/Open.html">Offer::Open</a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_redis_modifier-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 343</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_redis_modifier</span>(<span class="ruby-identifier">offer</span>)
+  <span class="ruby-identifier">offer</span>[<span class="ruby-node">&quot;#{arg_type}_modifier&quot;</span>] = <span class="ruby-identifier">modifier</span>
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_redis_prop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_redis_prop</span><span
+            class="method-args">(offer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>將目前特定玩法的球頭調整值更新到Redis內</p>
+
+<p>參數：</p>
+<ul><li>
+<p>offer: <a href="../Offer/Open.html">Offer::Open</a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_redis_prop-source">
+            <pre><span class="ruby-comment"># File app/models/match/open.rb, line 332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_redis_prop</span>(<span class="ruby-identifier">offer</span>)
+  <span class="ruby-identifier">offer</span>[<span class="ruby-value">:handicapped</span>][<span class="ruby-value">:modifier</span>] = <span class="ruby-identifier">modifier</span>
+  <span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

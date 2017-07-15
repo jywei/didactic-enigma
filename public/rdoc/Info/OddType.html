@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Info::OddType - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Object
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-basics">::basics</a>
+    
+    <li ><a href="#method-c-by_sport">::by_sport</a>
+    
+    <li ><a href="#method-c-ch">::ch</a>
+    
+    <li ><a href="#method-c-compact">::compact</a>
+    
+    <li ><a href="#method-c-data">::data</a>
+    
+    <li ><a href="#method-c-full">::full</a>
+    
+    <li ><a href="#method-c-full-3F">::full?</a>
+    
+    <li ><a href="#method-c-hf-3F">::hf?</a>
+    
+    <li ><a href="#method-c-ht-3F">::ht?</a>
+    
+    <li ><a href="#method-c-indexes">::indexes</a>
+    
+    <li ><a href="#method-c-moneyline-3F">::moneyline?</a>
+    
+    <li ><a href="#method-c-ot">::ot</a>
+    
+    <li ><a href="#method-c-ot_in-3F">::ot_in?</a>
+    
+    <li ><a href="#method-c-ot_name_shorten_from">::ot_name_shorten_from</a>
+    
+    <li ><a href="#method-c-ot_to_odd_columns">::ot_to_odd_columns</a>
+    
+    <li ><a href="#method-c-ot_types">::ot_types</a>
+    
+    <li ><a href="#method-c-points-3F">::points?</a>
+    
+    <li ><a href="#method-c-q1-3F">::q1?</a>
+    
+    <li ><a href="#method-c-q2-3F">::q2?</a>
+    
+    <li ><a href="#method-c-q3-3F">::q3?</a>
+    
+    <li ><a href="#method-c-q4-3F">::q4?</a>
+    
+    <li ><a href="#method-c-query_string">::query_string</a>
+    
+    <li ><a href="#method-c-threeway-3F">::threeway?</a>
+    
+    <li ><a href="#method-c-totals-3F">::totals?</a>
+    
+    <li ><a href="#method-c-types">::types</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Info::OddType">
+  <h1 id="class-Info::OddType" class="class">
+    class Info::OddType
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-basics" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">basics</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="basics-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">basics</span>
+  <span class="ruby-identifier">full</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>[<span class="ruby-value">:ot_name</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;one_win&#39;</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-by_sport" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">by_sport</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="by_sport-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">by_sport</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;soccer&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;test&#39;</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> { <span class="ruby-string">&#39;en&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">k</span>, <span class="ruby-string">&#39;ch&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;ml&#39;</span> }.<span class="ruby-identifier">compact</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> { <span class="ruby-string">&#39;en&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">k</span>, <span class="ruby-string">&#39;ch&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;three_way&#39;</span> }.<span class="ruby-identifier">compact</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ch" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ch</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ch-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ch</span>
+  <span class="ruby-identifier">to_hash</span> <span class="ruby-value">:ot_name</span>, <span class="ruby-value">:ot_name_ch</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-compact" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compact</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="compact-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">compact</span>
+  <span class="ruby-identifier">data</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;nil&#39;</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="data-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-node">%w(
+    0 1 3 4 2097153
+    65536 65537 65539 65540 nil
+    327680 327681 327683 327684 nil
+    nil 131073 131075 131076 nil
+    nil 393217 393219 393220 nil
+    nil 196609 196611 196612 nil
+    nil 458753 458755 458756 nil
+  )</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-full" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="full-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full</span>
+  [
+    {
+      <span class="ruby-identifier">ot_fullname</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;points&#39;</span>,
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;point&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;讓分&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">3</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">0</span>
+    },
+    {
+      <span class="ruby-identifier">ot_fullname</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;totals&#39;</span>,
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;ou&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;大小&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">4</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">1</span>
+    },
+    {
+      <span class="ruby-identifier">ot_fullname</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;money line&#39;</span>,
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;ml&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;獨贏&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">1</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">2</span>
+    },
+    {
+      <span class="ruby-identifier">ot_fullname</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;three way&#39;</span>,
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;three_way&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;三路&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">0</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">2</span>
+    },
+    {
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;one_win&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;一輸二贏&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">3</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">3</span>
+    },
+    {
+      <span class="ruby-identifier">ot_fullname</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;odd/even&#39;</span>,
+      <span class="ruby-identifier">ot_name</span><span class="ruby-operator">:</span>     <span class="ruby-string">&#39;odd_even&#39;</span>,
+      <span class="ruby-identifier">ot_name_ch</span><span class="ruby-operator">:</span>  <span class="ruby-string">&#39;單雙&#39;</span>,
+      <span class="ruby-identifier">ot</span><span class="ruby-operator">:</span>          <span class="ruby-value">2_097_153</span>,
+      <span class="ruby-identifier">index</span><span class="ruby-operator">:</span>       <span class="ruby-value">4</span>
+    }
+  ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-full-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="full-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-hf-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hf?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hf-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hf?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">10</span><span class="ruby-operator">..</span><span class="ruby-value">13</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ht-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ht?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ht-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ht?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">5</span><span class="ruby-operator">..</span><span class="ruby-value">8</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-indexes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">indexes</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="indexes-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">indexes</span>
+  <span class="ruby-identifier">to_hash</span> <span class="ruby-value">:ot_name</span>, <span class="ruby-value">:index</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-moneyline-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">moneyline?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="moneyline-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">moneyline?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_index</span>(<span class="ruby-identifier">ot</span>) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ot" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ot</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ot-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ot</span>
+  <span class="ruby-identifier">to_hash</span> <span class="ruby-value">:ot_name</span>, <span class="ruby-value">:ot</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ot_in-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ot_in?</span><span
+            class="method-args">(range, ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ot_in-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ot_in?</span>(<span class="ruby-identifier">range</span>, <span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">range</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">ot</span>.<span class="ruby-identifier">to_s</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ot_name_shorten_from" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ot_name_shorten_from</span><span
+            class="method-args">(long_ot_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ot_name_shorten_from-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ot_name_shorten_from</span>(<span class="ruby-identifier">long_ot_name</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">long_ot_name</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;three way&#39;</span>)
+    <span class="ruby-string">&#39;three_way&#39;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">long_ot_name</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;money line&#39;</span>)
+    <span class="ruby-string">&#39;ml&#39;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-node">%w(points spread)</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">long_ot_name</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">n</span>) }
+    <span class="ruby-string">&#39;point&#39;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">long_ot_name</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;totals&#39;</span>)
+    <span class="ruby-string">&#39;ou&#39;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">long_ot_name</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&#39;odd/even&#39;</span>)
+    <span class="ruby-string">&#39;odd_even&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ot_to_odd_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ot_to_odd_columns</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ot_to_odd_columns-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ot_to_odd_columns</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">data_index</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+    [<span class="ruby-value">:o1</span>, <span class="ruby-value">:o2</span>, <span class="ruby-value">:o3</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+    [<span class="ruby-value">:o1</span>, <span class="ruby-value">:o3</span>, <span class="ruby-keyword">nil</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>, <span class="ruby-value">3</span>
+    [<span class="ruby-value">:o1</span>, <span class="ruby-value">:o2</span>, <span class="ruby-keyword">nil</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-ot_types" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ot_types</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ot_types-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ot_types</span>
+  <span class="ruby-node">%w(full ht hf q1 q2 q3 q4)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-points-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">points?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="points-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">points?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_index</span>(<span class="ruby-identifier">ot</span>) <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-q1-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">q1?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="q1-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">q1?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">16</span><span class="ruby-operator">..</span><span class="ruby-value">18</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-q2-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">q2?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="q2-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">q2?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">21</span><span class="ruby-operator">..</span><span class="ruby-value">23</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-q3-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">q3?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="q3-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">q3?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">25</span><span class="ruby-operator">..</span><span class="ruby-value">27</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-q4-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">q4?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="q4-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">q4?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-identifier">ot_in?</span>(<span class="ruby-value">29</span><span class="ruby-operator">..</span><span class="ruby-value">31</span>, <span class="ruby-identifier">ot</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-query_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">query_string</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="query_string-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">query_string</span>
+  <span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;,&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-threeway-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">threeway?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="threeway-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">threeway?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_index</span>(<span class="ruby-identifier">ot</span>).<span class="ruby-identifier">zero?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-totals-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">totals?</span><span
+            class="method-args">(ot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="totals-3F-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">totals?</span>(<span class="ruby-identifier">ot</span>)
+  <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">data_index</span>(<span class="ruby-identifier">ot</span>) <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-types" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">types</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="types-source">
+            <pre><span class="ruby-comment"># File app/services/info/odd_type.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">types</span>
+  <span class="ruby-identifier">full</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>[<span class="ruby-value">:ot_name</span>] }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

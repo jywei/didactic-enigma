@@ -1,0 +1,30 @@
+# ignore the default sqlite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/backup/*.sql
+/config/database.yml
+/config/secrets.yml
+
+# ignore all logfiles and tempfiles.
+/log/*
+/coverage/*
+!/log/.keep
+/tmp
+**/*DS_Store
+**/*keep
+
+# redis
+**/*dump.rdb
+
+# tags
+**/.tags
+**/tags
+
+# erd
+**/erd.pdf
+
+**/*.pid
+
+# vendor
+/vendor
+/.bundle

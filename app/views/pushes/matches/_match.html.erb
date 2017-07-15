@@ -1,0 +1,13 @@
+<h3>Afu Match #<%= link_to params[:id], "/pushes/matches/#{params[:id]}" %></h3>
+<p>球類：<%= @match.category.league_name %>，運動：<%= @match.category.sport.name %>，類型：<%= @match.halves %></p>
+<p>主隊：<%= @match.hteam.name_cn %> (<%= @match.hteam.name %>)</p>
+<p>客隊：<%= @match.ateam.name_cn %> (<%= @match.ateam.name %>)</p>
+<p>開賽時間：<%= @match.start_time.strftime("%Y-%m-%d %H:%M:%S") %></p>
+<p>黏盤ID：<%= link_to @match.leader_id, "http://52.198.83.41:9292/tx_boards/#{@match.leader_id}", target: '_blank' %></p>
+<p>賠率提供商：<%= @match.book_maker.name %></p>
+<p>走地：<%= @match.is_running ? "是" : "否" %></p>
+
+<ul class="nav nav-tabs" style="margin-top: 20px;">
+  <li class="<%= "active" if params[:action] == "offers" %>"><a href="/pushes/matches/<%= params[:id] %>/offers">所有玩法</a></li>
+  <li class="<%= "active" if params[:action] == "show" %>"><a href="/pushes/matches/<%= params[:id] %>">演化過程</a></li>
+</ul>

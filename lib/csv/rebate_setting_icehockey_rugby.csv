@@ -1,0 +1,33 @@
+"冰球","icehockey",1,"讓球",160,20,60,76,"point",NULL,NULL
+"冰球","icehockey",2,"大小",150,20,60,76,"ou",NULL,NULL
+"冰球","icehockey",3,"獨贏",150,20,60,76,"ml",NULL,NULL
+"冰球","icehockey",4,"單雙",150,20,60,76,"odd_even",NULL,NULL
+"冰球","icehockey",5,"走地讓球",150,20,60,76,NULL,NULL,NULL
+"冰球","icehockey",6,"走地大小",150,20,60,76,NULL,NULL,NULL
+"冰球","icehockey",14,"走地單雙",150,20,60,76,NULL,NULL,NULL
+"冰球","icehockey",15,"一輸二贏",150,20,60,76,"one_win",NULL,NULL
+"冰球","icehockey",10,"讓分過關",500,20,60,76,NULL,NULL,NULL
+"冰球","icehockey",11,"綜合過關",500,20,60,76,NULL,NULL,NULL
+"冰球","icehockey",13,"全部",150,20,60,76,NULL,NULL,NULL
+"橄欖球","rugby union",1,"讓球",160,20,60,78,"point",NULL,NULL
+"橄欖球","rugby union",2,"大小",150,20,60,78,"ou",NULL,NULL
+"橄欖球","rugby union",3,"獨贏",150,20,60,78,"ml",NULL,NULL
+"橄欖球","rugby union",4,"單雙",150,20,60,78,"odd_even",NULL,NULL
+"橄欖球","rugby union",5,"走地讓球",150,20,60,78,NULL,NULL,NULL
+"橄欖球","rugby union",6,"走地大小",150,20,60,78,NULL,NULL,NULL
+"橄欖球","rugby union",14,"走地單雙",150,20,60,78,NULL,NULL,NULL
+"橄欖球","rugby union",15,"一輸二贏",150,20,60,78,"one_win",NULL,NULL
+"橄欖球","rugby union",10,"讓分過關",500,20,60,78,NULL,NULL,NULL
+"橄欖球","rugby union",11,"綜合過關",500,20,60,78,NULL,NULL,NULL
+"橄欖球","rugby union",13,"全部",150,20,60,78,NULL,NULL,NULL
+"冰球","ht_icehockey",1,"讓球",160,20,60,76,"point",NULL,NULL
+"冰球","ht_icehockey",2,"大小",150,20,60,76,"ou",NULL,NULL
+"冰球","ht_icehockey",3,"獨贏",150,20,60,76,"ml",NULL,NULL
+"冰球","ht_icehockey",4,"單雙",150,20,60,76,"odd_even",NULL,NULL
+"冰球","ht_icehockey",5,"走地讓球",150,20,60,76,NULL,NULL,NULL
+"冰球","ht_icehockey",6,"走地大小",150,20,60,76,NULL,NULL,NULL
+"冰球","ht_icehockey",14,"走地單雙",150,20,60,76,NULL,NULL,NULL
+"冰球","ht_icehockey",15,"一輸二贏",150,20,60,76,"one_win",NULL,NULL
+"冰球","ht_icehockey",10,"讓分過關",500,20,60,76,NULL,NULL,NULL
+"冰球","ht_icehockey",11,"綜合過關",500,20,60,76,NULL,NULL,NULL
+"冰球","ht_icehockey",13,"全部",150,20,60,76,NULL,NULL,NULL

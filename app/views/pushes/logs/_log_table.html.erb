@@ -1,0 +1,182 @@
+
+<section class="<%= log.event  %>">
+  <h3><%= log.event %></h3>
+  <table class="table table-bordered">
+    <tr>
+      <td>ID</td>
+      <td>動作</td>
+      <td>tx_offer_id</td>
+      <td>時間</td>
+      <td>提供商</td>
+      <td>玩法</td>
+      <td>玩法ID</td>
+      <td>類別</td>
+      <td>球頭</td>
+      <td>tx主機率</td>
+      <td>tx客機率</td>
+      <td>tx平機率</td>
+      <td>走地</td>
+      <td>Tx時間戳記</td>
+    </tr>
+    <tr>
+      <td><%= log.id %></td>
+      <td><%= log.action %></td>
+      <td><%= log.tx_offer_id %></td>
+      <td><%= log.created_at.in_time_zone("Asia/Taipei").strftime("%Y-%m-%d %H:%M:%S") %></td>
+      <td><%= log.book_maker.try(:name) %></td>
+      <td><%= log.ot_name %></td>
+      <td><%= log.ot %></td>
+      <td><%= log.ot_type %></td>
+      <td><%= log.head %></td>
+      <td><%= log.h_oppo %></td>
+      <td><%= log.a_oppo %></td>
+      <td><%= log.d_oppo %></td>
+      <td><%= JSON.parse(log.data)["is_running"] == 1 ? '是' : "" %></td>
+      <td><%= log.tx_timestamp %></td>
+    </tr>
+    <tr style="border-bottom: 2px solid black">
+      <td colspan="14">
+        <h4>處理過程：</h4>
+        <!-- <ul> -->
+          <% log.log.split("\n").each do |line| %>
+              <div class='cache_job_offer_id'>
+                  <%= cache_worker_get_offer_id(line) if log.event == 'cache' %>
+              </div>
+              <div class='line'>
+                <div style="position: absolute; left: 25px;">
+                  <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                </div>
+                  
+                  <% if line.include?("[更動前的Match]") %>
+                      
+                      <h4>[更動前的Match]</h3>
+                      <div class='json_data'>
+
+                        <%= get_json(line) %>
+                      </div>
+                      <pre class='json_pre'></pre>
+                  <% elsif line.include?("[更動後的Match]")%>
+                      <h4>[更動後的Match]</h3>
+                      <div class='json_data'>
+                        <%= get_json(line) %>
+                      </div>
+                      <pre class='json_pre'></pre>
+                  <% else %>
+                    <%= break_line_message(line) %>
+                  <% end %>
+                
+              </div>
+              <br>
+          <% end %>
+        <!-- </ul> -->
+
+        <h4>傳入資料：</h4>
+        <%= @log.data.present? ? break_line(log.data) : '無' %>
+        <% if tx == true %>
+          <h4>當時Tx玩法存在Redis的資料</h4>
+          <%= @log.tx_offer.present? ? break_line(log.tx_offer) : '無' %>
+          <h4>當時Tx比賽存在Redis的資料</h4>
+          <%= @log.tx_match.present? ? break_line(log.tx_match) : '無' %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+
+  <script type="text/javascript">
+  window.doc_index = window.doc_index || 0;
+    $( document ).ready(function() {
+      if(window.doc_index === 0)
+      {
+          window.doc_index = 1;
+          console.log('run onece')
+
+          $($( "div:contains('Activating offer with id')" )[2]).addClass("tag");
+          $($( "div:contains('New flat offer after sorting')" )[2]).addClass("tag");
+          $($( "div:contains('Current flat offer')" )[2]).addClass("tag");
+          $($( "div:contains('[更動前的Match]')" )[2]).addClass("data_tag_before");
+          $($( "div:contains('[更動後的Match]')" )[2]).addClass("data_tag_after");
+
+          
+
+          var index=0
+          
+          $('.json_data').not(".clone_div").each(function() {
+            var json;
+            json_str = $(this).text().replace(/ /g,'');
+            json = JSON.parse(json_str);
+            $(this).siblings('.json_pre').html(JSON.stringify(json, undefined, 4));
+
+            if(index==1){
+              var before_pre = $(this).parent().siblings('.data_tag_before').clone();
+              before_pre.find('.json_data').addClass('clone_div');
+
+              $(this).parent().after(before_pre);
+            }
+            console.log(index)
+            index++;   
+          });
+          
+          
+
+          var after = $('.data_tag_after');
+          after.addClass('left');
+          after.next('.data_tag_before').addClass('left');
+
+      }
+
+    });
+
+  </script>
+
+  <style type="text/css">
+
+      .cache_job_offer_id{
+        display: none;
+      }
+      h4{
+        clear: left;
+      }
+      .left{
+        float: left;
+      }
+      .line{
+        word-wrap: break-word;
+        margin-left: 25px;
+        margin-right: 5px;
+        /*border-bottom:1px solid #AAA;*/
+        padding-bottom: 5px;
+        /*width: 70%;*/
+        width: 1000px;
+      }
+      .json_data{
+        display: none;
+        word-wrap: break-word;
+      }
+      .tag{
+        color: #231de6;
+      }
+      .json_pre{
+        width: 100%;
+        height: 500px;
+        overflow: scroll;
+        margin-bottom: 40px;
+      }
+
+      .data_tag_before{
+        /*float: left;*/
+        width: 48%;
+        color: #673ab7;
+      }
+
+      .data_tag_after{
+        /*float: left;*/
+        width: 44%;
+        color: #10796f;
+      }
+
+      .untag{
+        color: #000000;
+      }
+  </style>
+</section>

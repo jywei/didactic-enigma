@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MatchesChannel - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationCable/Channel.html">ApplicationCable::Channel</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="ApplicationCable/Authentication.html">ApplicationCable::Authentication</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-match_live">#match_live</a>
+    
+    <li ><a href="#method-i-odd_adjust">#odd_adjust</a>
+    
+    <li ><a href="#method-i-random_head">#random_head</a>
+    
+    <li ><a href="#method-i-stake_update">#stake_update</a>
+    
+    <li ><a href="#method-i-stat_change">#stat_change</a>
+    
+    <li ><a href="#method-i-subscribed">#subscribed</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MatchesChannel">
+  <h1 id="class-MatchesChannel" class="class">
+    class MatchesChannel
+  </h1>
+
+  <section class="description">
+    
+<p>控盤人員連線頻道，用於調整盤表，行為主要包含調整賠率，球頭，以及狀態的action。 而透過這個頻道也會收到賠率更新，球頭調整，狀態調整等事件。</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-match_live" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">match_live</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="match_live-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">match_live</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>])
+  <span class="ruby-ivar">@match</span>[<span class="ruby-value">:is_running</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;is_running&#39;</span>]
+  <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;offer&#39;</span>].<span class="ruby-identifier">to_sym</span>)[<span class="ruby-value">:is_running</span>] = <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;is_running&#39;</span>];
+  <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+    <span class="ruby-string">&#39;MatchesChannel&#39;</span>,
+    <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;match_live&#39;</span>,
+    <span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;match_id&quot;</span>],
+    <span class="ruby-identifier">is_running</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;is_running&quot;</span>]
+  )
+  <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+    <span class="ruby-string">&#39;Player::MatchesChannel&#39;</span>,
+    <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;match_live&#39;</span>,
+    <span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;match_id&quot;</span>],
+    <span class="ruby-identifier">is_running</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;is_running&quot;</span>]
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-odd_adjust" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">odd_adjust</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>調整賠率使用的action</p>
+
+<p>參數：</p>
+
+<pre class="ruby">{
+  <span class="ruby-identifier">match_id</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>,
+  <span class="ruby-identifier">offer</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>,
+  <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>, <span class="ruby-comment"># =&gt; 隊伍 &#39;h&#39;, &#39;a&#39;, or &#39;asian&#39;</span>
+  <span class="ruby-identifier">modifier</span><span class="ruby-operator">:</span> <span class="ruby-constant">Float</span>,
+  <span class="ruby-identifier">last_updated</span><span class="ruby-operator">:</span> <span class="ruby-constant">Integer</span>,
+  <span class="ruby-identifier">cookie</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>,
+  <span class="ruby-identifier">offer_type</span><span class="ruby-operator">:</span> <span class="ruby-constant">String</span>, <span class="ruby-comment"># =&gt; &#39;normal&#39;, &#39;parlay&#39;, or &#39;asian&#39;</span>
+}
+</pre>
+
+<p>流程上剛開始會透過 <a
+href="ApplicationCable/Authentication.html#method-i-user_identified_by-3F">ApplicationCable::Authentication#user_identified_by?</a>
+來驗證使用者是否 登入，但限制不算太嚴格，只要有登入就通過，所以目前就算玩家也可以進行調盤，棒棒！</p>
+
+<p>接下來會將比賽利用 <a href="Cache/Lock/Match.html">Cache::Lock::Match</a>
+在redis當中鎖起來，確保沒有其他人正在調同一場比賽， 並檢查目標要調整的玩法是否有開盤，沒開盤就不處理。</p>
+
+<p>確認都完成之後，便透過 <a
+href="Match/Open.html#method-i-update_odd-21">Match::Open#update_odd!</a>
+將賠率調整至目標賠率，最後廣播回給控盤人員 及玩家。</p>
+          
+          
+
+          
+          <div class="method-source-code" id="odd_adjust-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">odd_adjust</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user_identified_by?</span> <span class="ruby-identifier">cookie_from</span> <span class="ruby-identifier">args</span>
+  <span class="ruby-constant">Cache</span><span class="ruby-operator">::</span><span class="ruby-constant">Lock</span><span class="ruby-operator">::</span><span class="ruby-constant">Match</span>.<span class="ruby-identifier">lock</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>]) <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;offer&quot;</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;all&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@match</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;offer&quot;</span>]].<span class="ruby-identifier">available?</span>.<span class="ruby-operator">!</span>
+      <span class="ruby-identifier">send_to_user</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;odd&#39;</span>, <span class="ruby-identifier">code</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">message</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;offer not available&#39;</span>
+      <span class="ruby-keyword">return</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># 如果要調整的目標比賽不存在就當作沒這回事</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@match</span>
+    <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;user_id&#39;</span>] = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">update_odd!</span>(<span class="ruby-identifier">args</span>)
+
+    <span class="ruby-comment"># 將調盤的結果廣播送給控盤人員</span>
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offer_odd_modifier</span>(<span class="ruby-identifier">args</span>)
+    )
+    <span class="ruby-comment"># 將調盤的結果廣播送給玩家</span>
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;Player::MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offer_odd</span>(
+        <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;offer&#39;</span>],
+        <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;type&#39;</span>],
+        <span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;last_updated&#39;</span>]
+      )
+    )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">logging_error</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">e</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-random_head" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">random_head</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>fake API</p>
+          
+          
+
+          
+          <div class="method-source-code" id="random_head-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">random_head</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@match</span>
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">new_head</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;offer&#39;</span>],
+                      <span class="ruby-identifier">h</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(0.1 0.2 0.3 0.4 0.5)</span>.<span class="ruby-identifier">sample</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">1</span>),
+                      <span class="ruby-identifier">a</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(0.1 0.2 0.3 0.4 0.5)</span>.<span class="ruby-identifier">sample</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">1</span>),
+                      <span class="ruby-identifier">d</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(0.1 0.2 0.3 0.4 0.5)</span>.<span class="ruby-identifier">sample</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">round</span>(<span class="ruby-value">1</span>),
+                      <span class="ruby-identifier">head</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(1 2 3 4 5 6 7 8 9)</span>.<span class="ruby-identifier">sample</span>.<span class="ruby-identifier">to_i</span>,
+                      <span class="ruby-identifier">proportion</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(10 20 30 40 50 60)</span>.<span class="ruby-identifier">sample</span>.<span class="ruby-identifier">to_i</span>
+                     )
+    )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stake_update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stake_update</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>fake API</p>
+          
+          
+
+          
+          <div class="method-source-code" id="stake_update-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stake_update</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@match</span>
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">stakes</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;offer&#39;</span>])
+    )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">logging_error</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">e</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stat_change" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stat_change</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stat_change-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stat_change</span>(<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user_identified_by?</span> <span class="ruby-identifier">cookie_from</span> <span class="ruby-identifier">args</span>
+  <span class="ruby-ivar">@match</span> = <span class="ruby-identifier">$redis</span>.<span class="ruby-identifier">afu_match!</span>(<span class="ruby-identifier">args</span>[<span class="ruby-string">&#39;match_id&#39;</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;offer&quot;</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;all&#39;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@match</span>[<span class="ruby-value">:play</span>][<span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;offer&quot;</span>]].<span class="ruby-identifier">available?</span>.<span class="ruby-operator">!</span>
+    <span class="ruby-identifier">send_to_user</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;odd&#39;</span>, <span class="ruby-identifier">code</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">message</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;offer not available&#39;</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@match</span>
+    <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">change_stat!</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offer_stat</span>(
+        <span class="ruby-identifier">args</span>,
+        <span class="ruby-identifier">current_user</span>
+      )
+    )
+    <span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(
+      <span class="ruby-string">&#39;Player::MatchesChannel&#39;</span>,
+      <span class="ruby-ivar">@match</span>.<span class="ruby-identifier">offer_stat</span>(<span class="ruby-identifier">args</span>)
+    )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">logging_error</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">e</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-subscribed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subscribed</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>在訂閱時檢查使用者是不是控盤人員，如果不是，就不會訂閱到控盤的stream上。</p>
+
+<p>如果訂閱成功，則可以透過廣播來聯絡該使用者：</p>
+
+<pre class="ruby"><span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(<span class="ruby-string">&quot;MatchesChannel&quot;</span>, <span class="ruby-identifier">foo</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;bar&quot;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="subscribed-source">
+            <pre><span class="ruby-comment"># File app/channels/matches_channel.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">subscribed</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:operator?</span>)
+    <span class="ruby-identifier">stream_from</span> <span class="ruby-identifier">channel</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

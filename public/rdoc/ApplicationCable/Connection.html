@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ApplicationCable::Connection - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActionCable::Connection::Base
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../User/Authenticator.html">User::Authenticator</a>
+  
+  
+  
+    <li><a class="include" href="Authentication.html">ApplicationCable::Authentication</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-connect">#connect</a>
+    
+    <li ><a href="#method-i-find_current_user">#find_current_user</a>
+    
+    <li ><a href="#method-i-user_channel">#user_channel</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ApplicationCable::Connection">
+  <h1 id="class-ApplicationCable::Connection" class="class">
+    class ApplicationCable::Connection
+  </h1>
+
+  <section class="description">
+    
+<p>使用者建立連線之後，會產生一個Connection物件存在ActionCable的連線管理當中，
+一般取得方式是在使用者執行WebSocket行為時，從Channel內取得。</p>
+
+<p>例如使用者利用登入時，我們要設定這條連線的使用者：</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">GeneralChannel</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ApplicationCable</span><span class="ruby-operator">::</span><span class="ruby-constant">Channel</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">sign_in</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">username</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;username&quot;</span>], <span class="ruby-identifier">password</span><span class="ruby-operator">:</span> <span class="ruby-identifier">args</span>[<span class="ruby-string">&quot;password&quot;</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+      <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">connection_user</span> = <span class="ruby-identifier">user</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>這只是示範，驗證方式很爛，小朋友不要學。</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-token_outdated" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">token_outdated</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>設定這條連線使用token已經過期</p>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-connect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">connect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>使用者建立連線以後會執行的callback，通常用於使用者驗證</p>
+          
+          
+
+          
+          <div class="method-source-code" id="connect-source">
+            <pre><span class="ruby-comment"># File app/channels/application_cable/connection.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">connect</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">client_identifier</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>(<span class="ruby-value">5</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection_user</span> = <span class="ruby-identifier">find_current_user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_current_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_current_user</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>利用瀏覽器cookie找到使用者，找到就設定，找不到就不設定(廢話)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_current_user-source">
+            <pre><span class="ruby-comment"># File app/channels/application_cable/connection.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_current_user</span>
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-string">&quot;Validating token&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_token?</span>
+    <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-string">&quot;Token not found&quot;</span>)
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">u</span> = <span class="ruby-identifier">token_outdated?</span>
+    <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Token found in User::Token as ##{u.id}&quot;</span>)
+    <span class="ruby-ivar">@token_outdated</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">access_token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">parsed_token</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+      <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;User found as ##{user.id} #{user.username}&quot;</span>)
+      <span class="ruby-identifier">user</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;User not found with token #{parsed_token}&quot;</span>)
+      <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_channel" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_channel</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>使用者訂閱的頻道名稱，通常用於廣播給特定使用者使用</p>
+
+<pre class="ruby"><span class="ruby-constant">ActionCable</span>.<span class="ruby-identifier">server</span>.<span class="ruby-identifier">broadcast</span>(<span class="ruby-identifier">user_channel</span>, <span class="ruby-identifier">msg</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You&#39;re my bitch.&quot;</span>)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="user_channel-source">
+            <pre><span class="ruby-comment"># File app/channels/application_cable/connection.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_channel</span>
+  <span class="ruby-node">&quot;user_#{client_identifier}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
